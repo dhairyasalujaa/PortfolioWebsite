@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+nav {
+  display: flex;
+  gap: 20px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+nav a {
+  text-decoration: none;
+  font-family: "Inter", Arial, sans-serif;
+  color: #1a1a1a;
+  transition: color 0.2s ease-in-out;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+nav a:hover {
+  background-color: #d64545;
+  color: white;
+  border-radius: 4px;
+  animation: hoverEffect 0.3s ease-out;
+}
+.hero {
+  padding: 40px 24px 20px;
+  animation: fadeInUp 0.4s ease-out;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin: 0 0 16px;
+}
+.hero p {
+  color: #666;
+  max-width: 500px;
+  font-size: 16px;
+}
+.project-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+.project-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.project-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+section {
+  padding: 30px 24px;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.contact-info a {
+  color: #077deb;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+.contact-info a:hover {
+  color: #d64545;
+}
