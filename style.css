@@ -1,3 +1,7 @@
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
 body {
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
@@ -14,14 +18,15 @@ body {
   }
 }
 section {
-  padding: 50px 24px;
-  border-top: 0.5px solid #7e7e7e28;
+  padding: 60px 40px;
+  border-top: 1px solid #e4e4e0;
 }
 
 /*nav*/
 
 nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 25px;
   padding: 16px 20px;
@@ -51,7 +56,7 @@ nav a:hover {
   padding: 70px 40px 120px;
   animation: fadeInUp 0.4s ease-in-out;
   background-color: #fbfbf9;
-  background-image: radial-gradient(#0707071e 1px, transparent 1px);
+  background-image: radial-gradient(#07070734 1px, transparent 1px);
   background-size: 24px 24px;
   display: flex;
   align-items: center;
@@ -116,6 +121,52 @@ nav a:hover {
   display: block;
 }
 
+/*skills area*/
+
+.skills h2 {
+  margin-bottom: 8px;
+}
+
+.skills-sub {
+  color: #666;
+  font-size: 15px;
+  margin: 0 0 36px;
+  max-width: 560px;
+}
+
+.skill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 70px 90px 120px;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 80px;
+  transition: transform 0.25s ease;
+}
+
+.skill:hover {
+  transform: translateY(-4px);
+  box-shadow: #141414;
+}
+
+.skill img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.skill span {
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+}
+
 /*projects area*/
 
 .project-card {
@@ -161,9 +212,6 @@ nav a:hover {
   margin: 0;
   color: #666;
   font-size: 14px;
-}
-section {
-  padding: 30px 24px;
 }
 
 h2 {
