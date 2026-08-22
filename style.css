@@ -1,4 +1,4 @@
-.page {
+.navrounding {
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
   background-color: #f9f9f9;
+  scroll-behavior: smooth;
 }
 @keyframes fadeInUp {
   from {
@@ -18,7 +19,7 @@ body {
   }
 }
 section {
-  padding: 60px 40px;
+  padding: 70px 40px 120px;
   border-top: 1px solid #e4e4e0;
 }
 
@@ -104,7 +105,7 @@ nav a:hover {
   height: var(--card-h);
 
   transform: translateX(var(--x)) rotate(var(--rot));
-  transform-origin: bottom center; /* cards pivot from their base, like a real hand */
+  transform-origin: bottom center;
 
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -125,11 +126,13 @@ nav a:hover {
 
 .skills h2 {
   margin-bottom: 8px;
+  padding-left: 40px;
 }
 
 .skills-sub {
   color: #666;
   font-size: 15px;
+  padding-left: 40px;
   margin: 0 0 36px;
   max-width: 560px;
 }
@@ -138,13 +141,13 @@ nav a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  padding: 70px 90px 120px;
 }
 
 .skill {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px 40px 120px;
   gap: 10px;
   width: 80px;
   transition: transform 0.25s ease;
