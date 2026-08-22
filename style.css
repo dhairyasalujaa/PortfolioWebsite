@@ -68,11 +68,18 @@ nav a:hover {
   flex: 1;
 }
 .hero h1 {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: normal;
   margin: 0 0 16px;
   font-size: 100px;
   padding-left: 50px;
 }
 .hero p {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   color: #666;
   max-width: 500px;
   font-size: 16px;
@@ -169,7 +176,12 @@ nav a:hover {
   color: #666;
   text-align: center;
 }
-
+.skill p {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 /*projects area*/
 
 .project-card {
@@ -212,6 +224,10 @@ nav a:hover {
 }
 
 .project-card p {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   margin: 0;
   color: #666;
   font-size: 14px;
@@ -274,4 +290,10 @@ h2 {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.048);
   border-color: #cfcfca;
+}
+.boxing-info p {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
