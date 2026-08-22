@@ -21,6 +21,12 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300..700&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -65,37 +71,41 @@
         </div>
       </div>
     </div>
-    <script src="scripts.js"></script>
 
     <!--boxing stuff-->
 
-    <section class="boxing-info">
-      <h2>Boxing</h2>
-      <div class="boxing text">
+    <section class="boxing-info reveal-group">
+      <h2 class="reveal">Boxing</h2>
+      <div class="boxing-text reveal">
         <p>
-          I absolutely love boxing and i've been training my hardest for a
-          little over an year now. I love it because of the repetition and the
+          I absolutely love boxing and I've been training my hardest for a
+          little over a year now. I love it because of the repetition and the
           feeling of being that tired in a sport that I feel I'm naturally
           inclined towards.
         </p>
         <p>
           Lately my training sessions have been directed towards working and
           improving myself. My end goal is to fight at Fitbox Fighting
-          Championship 7 around november.
+          Championship 7 around November.
         </p>
       </div>
-      <a href="https://www.instagram.com/dhairya.bxng/" target="_blank"
-        >Support my boxing journey aswell!</a
+      <a
+        class="reveal"
+        href="https://www.instagram.com/dhairya.bxng/"
+        target="_blank"
+        >Support my boxing journey as well!</a
       >
     </section>
 
     <!--skills section-->
 
-    <section class="skills">
-      <h2>Stack I use</h2>
-      <p class="skills-sub">Technologies I'm learning and building with.</p>
+    <section class="skills reveal-group">
+      <h2 class="reveal">Stack I use</h2>
+      <p class="skills-sub reveal">
+        Technologies I'm learning and building with.
+      </p>
 
-      <div class="skill-grid">
+      <div class="skill-grid reveal">
         <div class="skill">
           <img src="images/html.svg" alt="HTML" />
           <span>HTML</span>
@@ -122,10 +132,11 @@
         </div>
       </div>
     </section>
+
     <!--contact information here-->
 
-    <section id="contact-info">
-      <div class="contact-info">
+    <section id="contact-info" class="reveal-group">
+      <div class="contact-info reveal">
         <h2>Contact</h2>
         <ul>
           <li>dhairyarsaluja@gmail.com</li>
@@ -138,5 +149,6 @@
         </ul>
       </div>
     </section>
+    <script src="scripts.js"></script>
   </body>
 </html>

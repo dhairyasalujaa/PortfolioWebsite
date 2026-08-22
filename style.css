@@ -11,6 +11,22 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+h2 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400px;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-size: 32px;
+}
+p {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400px;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-size: 16px;
+}
 body {
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
@@ -85,13 +101,14 @@ nav a:hover {
   padding-left: 50px;
 }
 .hero p {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Bricolage Grotesque", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 400px;
   font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-size: 18px;
   color: #666;
   max-width: 500px;
-  font-size: 16px;
   padding-left: 50px;
 }
 
@@ -186,10 +203,12 @@ nav a:hover {
   text-align: center;
 }
 .skill p {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Bricolage Grotesque", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 400px;
   font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-size: 16px;
 }
 /*projects area*/
 
@@ -240,14 +259,6 @@ nav a:hover {
   margin: 0;
   color: #666;
   font-size: 14px;
-}
-
-h2 {
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 600;
-  font-style: bold;
-  font-size: 30px;
-  margin-bottom: 20px;
 }
 .contact-info {
   display: flex;
@@ -308,4 +319,34 @@ h2 {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+}
+/* ---------- SCROLL REVEAL ---------- */
+.reveal {
+  opacity: 0.001;
+  transform: translateY(20px);
+  filter: blur(4px);
+  transition:
+    opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+    filter 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* stagger children 150ms apart, like Zen */
+.reveal-group.visible > *:nth-child(1) {
+  transition-delay: 0ms;
+}
+.reveal-group.visible > *:nth-child(2) {
+  transition-delay: 150ms;
+}
+.reveal-group.visible > *:nth-child(3) {
+  transition-delay: 300ms;
+}
+.reveal-group.visible > *:nth-child(4) {
+  transition-delay: 450ms;
 }
