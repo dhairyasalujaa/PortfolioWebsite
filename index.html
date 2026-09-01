@@ -2,27 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dhairya Saluja</title>
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300..700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
       rel="stylesheet"
@@ -30,17 +22,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!--nav here-->
-
+    <!-- nav -->
     <div class="navrounding">
       <nav>
-        <a href="index.html">home</a>
-        <a href="projects.html">projects</a>
+        <a href="#top">home</a>
+        <a href="#projects">projects</a>
       </nav>
     </div>
-    <div class="hero" id="top">
-      <!--hero-->
 
+    <!-- hero -->
+    <div class="hero" id="top">
       <div class="header">
         <h1>
           Dhairya <br />
@@ -72,8 +63,7 @@
       </div>
     </div>
 
-    <!--boxing stuff-->
-
+    <!-- boxing -->
     <section class="boxing-info reveal-group">
       <h2 class="reveal">Boxing</h2>
       <div class="boxing-text reveal">
@@ -97,8 +87,7 @@
       >
     </section>
 
-    <!--skills section-->
-
+    <!-- skills -->
     <section class="skills reveal-group">
       <h2 class="reveal">Stack I use</h2>
       <p class="skills-sub reveal">
@@ -133,8 +122,41 @@
       </div>
     </section>
 
-    <!--contact information here-->
+    <!-- projects -->
+    <section id="projects" class="projects-section reveal-group">
+      <h2 class="reveal">Projects</h2>
+      <p class="projects-sub reveal">
+        Things I've built and am working on.
+      </p>
 
+      <div class="project-list reveal">
+        <div class="project-card">
+          <h3>Weyn</h3>
+          <p>
+            An event discovery and ticketing app for Muscat. This project
+            is on hold for now, I hope to continue it in the future!
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h3>This Website</h3>
+          <p>
+            My portfolio, built from scratch while learning HTML, CSS and
+            JavaScript. You're looking at it right now!
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h3>Weather App</h3>
+          <p>
+            A clean weather app that fetches real-time forecasts. Practice
+            project for working with APIs and async JavaScript.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact -->
     <section id="contact-info" class="reveal-group">
       <div class="contact-info reveal">
         <h2>Contact</h2>
