@@ -1,13 +1,64 @@
-@font-face {
-  font-family: "SFProDisplay";
-  src: url(fonts/SFPRODISPLAYBOLD.OTF);
-}
-@font-face {
-  font-family: "Junicode";
-  src: url(fonts/junicode.regular.ttf);
+/* =============================================================================
+   Dhairya Saluja — portfolio
+   Built on the KHAT Studio design system: warm black, bone and sand, one
+   grotesk at contrasting weights, hairline rules, square corners, and motion
+   that reveals hierarchy instead of decorating it.
+
+   Contents
+     1.  Tokens
+     2.  Reset & base
+     3.  Layout primitives
+     4.  Typography roles
+     5.  Nav
+     6.  Hero
+     7.  About
+     8.  Boxing (light section)
+     9.  Numbered rows — stack & work
+     10. Page head — inner pages
+     11. Contact
+     12. Footer
+     13. Scroll reveal
+     14. Responsive
+   ========================================================================== */
+
+/* =============================================================================
+   1. TOKENS
+   Colours are stored as bare HSL channels so any of them can be used at an
+   arbitrary opacity via hsl(var(--x) / .5). Opacity is a real part of this
+   palette — most "grey" text here is just foreground turned down.
+   ========================================================================== */
+
+:root {
+  /* Colour */
+  --background: 28 10% 11%; /* warm black, never #000 */
+  --foreground: 34 22% 92%; /* bone, never #fff */
+  --secondary: 28 10% 17%;
+  --primary: 32 28% 78%; /* sand — CTAs and accents only */
+  --primary-fg: 28 14% 12%;
+  --border: 28 12% 22%;
+
+  /* Measure */
+  --content-max: 1600px;
+  --editorial-max: 1400px;
+  --gutter: 24px;
+  --section-y: 96px;
+
+  /* Motion — one easing family, quick start and soft landing */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* ===== GLOBAL ===== */
+@media (min-width: 768px) {
+  :root {
+    --gutter: 40px;
+    --section-y: 128px;
+  }
+}
+
+/* =============================================================================
+   2. RESET & BASE
+   ========================================================================== */
 
 *,
 *::before,
@@ -15,481 +66,738 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: "Inter", Arial, sans-serif;
-  background-color: #f9f9f9;
+html {
+  /* Lenis drives the smooth scroll; this is the no-JS fallback */
   scroll-behavior: smooth;
 }
 
-h2 {
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-  font-size: 32px;
-}
-
-p {
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
+body {
+  margin: 0;
+  font-family: "Inter Tight", system-ui, sans-serif;
   font-size: 16px;
+  line-height: 1.5;
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+  -webkit-font-smoothing: antialiased;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+img {
+  display: block;
+  max-width: 100%;
 }
 
-section {
-  padding: 70px 40px 120px;
-  border-top: 1px solid #e4e4e0;
-  text-align: center;
-}
-
-/* ===== NAV — floating pill ===== */
-
-.navrounding {
-  position: sticky;
-  top: 20px;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  padding: 0 20px;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 12px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid #e4e4e0;
-  border-radius: 999px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-}
-
-nav a {
+a {
+  color: inherit;
   text-decoration: none;
-  font-family: "Inter", Arial, sans-serif;
-  color: #7a7a7a;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 6px 16px;
-  border-radius: 999px;
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
 }
 
-nav a:hover {
-  background-color: #f0f0ee;
-  color: #111;
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-/* ===== HERO ===== */
-
-.hero {
-  padding: 70px 40px 120px;
-  padding-bottom: 210px;
-  animation: fadeInUp 0.4s ease-in-out;
-  background-color: #fbfbf9;
-  background-image: radial-gradient(#07070734 1px, transparent 1px);
-  background-size: 24px 24px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  justify-content: space-between;
-  gap: 60px;
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
 }
 
-.header {
-  flex: 1;
+/* The custom cursor is decorative, so focus has to stay visible on its own */
+:focus-visible {
+  outline: 1px solid hsl(var(--primary));
+  outline-offset: 4px;
 }
 
-.hero h1 {
-  font-family: "Junicode";
-  font-weight: 500;
-  font-style: normal;
-  margin: 0 0 16px;
-  font-size: 100px;
-}
+/* =============================================================================
+   3. LAYOUT PRIMITIVES
+   ========================================================================== */
 
-.hero p {
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-  font-size: 18px;
-  color: #666;
-  max-width: 500px;
+.container {
+  width: 100%;
+  max-width: var(--content-max);
   margin: 0 auto;
+  padding: 0 var(--gutter);
 }
 
-/* ===== CARD DECK (hero photos) ===== */
+.section {
+  padding: var(--section-y) 0;
+}
 
-.deck {
-  --card-w: 360px;
-  --card-h: 440px;
+/* Every major section is divided by a hairline rather than a card edge */
+.section + .section {
+  border-top: 1px solid hsl(var(--border) / 0.6);
+}
+
+/* The one inverted section on the page */
+.section--light {
+  background-color: hsl(var(--foreground));
+  color: hsl(var(--primary-fg));
+}
+
+.section__head {
+  max-width: 60rem;
+  margin-bottom: 64px;
+}
+
+/* =============================================================================
+   4. TYPOGRAPHY ROLES
+   Three roles carry the whole site: eyebrow, display, body. A headline states
+   its idea in medium weight, then releases the rest in light and dimmed —
+   that weight contrast is the hierarchy, so nothing here should go bold.
+   ========================================================================== */
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--foreground) / 0.6);
+}
+
+.section--light .eyebrow {
+  color: hsl(var(--primary-fg) / 0.65);
+}
+
+.display {
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.display--sm {
+  font-size: clamp(1.5rem, 4vw, 1.875rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  max-width: 42rem;
+}
+
+.display--md {
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+}
+
+.display--lg {
+  font-size: clamp(3rem, 8vw, 4.5rem);
+}
+
+/* The second half of a headline: same family, lighter, quieter */
+.release {
+  display: block;
+  font-weight: 300;
+  color: hsl(var(--foreground) / 0.45);
+}
+
+.section--light .release {
+  color: hsl(var(--primary-fg) / 0.55);
+}
+
+/* Right-to-left underline draw — the site's only link decoration */
+.link-underline {
   position: relative;
-  width: var(--card-w);
-  height: var(--card-h);
-  margin: 80px 90px;
+  display: inline-block;
+  font-size: 14px;
+  color: hsl(var(--foreground) / 0.7);
+  transition: color 0.3s var(--ease-soft);
 }
 
-.card {
-  --x: 0px;
-  --rot: 0deg;
-  --x-open: 60px;
-  --rot-open: 60deg;
+.link-underline::after {
+  content: "";
   position: absolute;
+  right: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.5s var(--ease-draw);
+}
+
+.link-underline:hover {
+  color: hsl(var(--foreground));
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+.section--light .link-underline {
+  color: hsl(var(--primary-fg) / 0.7);
+}
+
+.section--light .link-underline:hover {
+  color: hsl(var(--primary-fg));
+}
+
+/* Outlined rectangle that fills on hover. Pills are reserved elsewhere; the
+   primary action gets the squarest, plainest shape on the page. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 32px;
+  border: 1px solid hsl(var(--foreground) / 0.4);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.5s var(--ease-soft),
+    color 0.5s var(--ease-soft),
+    border-color 0.5s var(--ease-soft);
+}
+
+.button:hover {
+  background-color: hsl(var(--foreground));
+  border-color: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+
+/* =============================================================================
+   5. NAV
+   `difference` blending lets one set of colours read correctly over both the
+   dark hero and the bone boxing section, so there is no scroll-position class
+   to keep in sync. Hiding on scroll down is handled in scripts.js.
+   ========================================================================== */
+
+.nav {
+  position: fixed;
   top: 0;
   left: 0;
-  width: var(--card-w);
-  height: var(--card-h);
-  transform: translateX(var(--x)) rotate(var(--rot));
-  transform-origin: bottom center;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 50;
+  width: 100%;
+  mix-blend-mode: difference;
+  transition: transform 0.5s ease-out;
 }
 
-.deck:hover .card {
-  transform: translateX(var(--x-open)) rotate(var(--rot-open));
+.nav--hidden {
+  transform: translateY(-100%);
 }
 
-.card img {
+.nav__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  height: 64px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.nav__mark {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: hsl(var(--foreground));
+}
+
+.nav__links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.nav__links a,
+.nav__action {
+  font-size: 13px;
+  color: hsl(var(--foreground) / 0.7);
+  transition: color 0.3s var(--ease-soft);
+}
+
+.nav__links a:hover,
+.nav__action:hover {
+  color: hsl(var(--foreground));
+}
+
+.nav__action {
+  justify-self: end;
+  white-space: nowrap;
+}
+
+/* =============================================================================
+   6. HERO
+   Full-viewport image, veiled top and bottom, with the text pinned low. Most
+   of the frame is intentionally left empty.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.hero__media,
+.hero__veil {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__media {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-  display: block;
+  object-position: center 30%;
 }
 
-/* ===== BOXING ===== */
+/* Dark at both ends, open in the middle: the top band keeps the blended nav
+   legible, the bottom band gives the headline something to sit on, and the
+   photograph is left alone through the middle. */
+.hero__veil {
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--background) / 0.72) 0%,
+    hsl(var(--background) / 0.22) 40%,
+    hsl(var(--background) / 0.88) 100%
+  );
+}
 
-.boxing-info {
+.hero__content {
+  position: relative;
+  padding-bottom: 96px;
+}
+
+.hero__content .eyebrow {
+  margin-bottom: 20px;
+}
+
+.hero__cue {
+  margin-top: 40px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: hsl(var(--foreground) / 0.6);
+}
+
+/* =============================================================================
+   7. ABOUT
+   Sentences are separate reveal targets, so the paragraph resolves one line at
+   a time as it scrolls in rather than appearing as a single block.
+   ========================================================================== */
+
+.about__statement {
+  max-width: var(--editorial-max);
+  margin-top: 48px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  max-width: 600px;
-  margin: 20px auto;
-  background-color: #fff;
-  border: 1px solid #0000001c;
-  border-radius: 16px;
-  padding: 32px 40px;
-  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  gap: 32px;
 }
 
-.boxing-info:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.048);
-  border-color: #cfcfca;
+.statement {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  max-width: 34ch;
 }
 
-.boxing-info a {
-  color: #555555ad;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
+/* Every second sentence steps in, so the block reads as a staircase */
+.statement:nth-child(even) {
+  margin-left: auto;
+  color: hsl(var(--foreground) / 0.65);
 }
 
-.boxing-info a:hover {
-  color: #111;
+/* =============================================================================
+   8. BOXING — light section
+   A 7/5 editorial split: one dominant frame on the left, a note card and a
+   supporting frame stacked on the right.
+   ========================================================================== */
+
+.boxing__head {
+  max-width: 60rem;
+  margin-bottom: 64px;
 }
 
-.boxing-text {
-  max-width: 620px;
-  margin: 0 auto 24px;
+.boxing__head .eyebrow {
+  margin-bottom: 20px;
 }
 
-.boxing-info p {
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+.editorial {
+  display: grid;
+  gap: 24px;
+  max-width: var(--editorial-max);
 }
 
-/* ===== SKILLS ===== */
-
-.skills h2 {
-  margin-bottom: 8px;
+/* Stacked first: 4:5 for the lead frame, 5:4 for the support — portrait then
+   landscape, so the second frame never just repeats the first. */
+.editorial__lead img,
+.editorial__support img {
+  width: 100%;
+  object-fit: cover;
+  border: 1px solid hsl(var(--primary-fg) / 0.12);
 }
 
-.skills-sub {
-  color: #666;
-  font-size: 15px;
-  max-width: 560px;
-  margin: 0 auto 36px;
+.editorial__lead img {
+  aspect-ratio: 4 / 5;
 }
 
-.skill-grid {
+.editorial__support img {
+  aspect-ratio: 5 / 4;
+}
+
+.editorial__lead figcaption {
+  margin-top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--primary-fg) / 0.65);
+}
+
+.editorial__aside {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-}
-
-.skill {
-  display: flex;
-  text-align: center;
   flex-direction: column;
-  align-items: center;
-  padding: 10px 20px;
-  gap: 10px;
-  width: 80px;
-  transition: transform 0.25s ease;
+  gap: 24px;
 }
 
-.skill:hover {
-  transform: translateY(-4px);
-}
-
-.skill img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-.skill span {
-  font-size: 13px;
-  color: #666;
-  text-align: center;
-}
-
-.skill p {
-  text-align: center;
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-  font-size: 16px;
-}
-
-/* ===== PROJECTS ===== */
-
-.projects-section {
-  max-width: 740px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.projects-sub {
-  color: #666;
-  font-size: 15px;
-  max-width: 560px;
-  margin: 0 auto 36px;
-}
-
-.project-list {
+.note {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  align-items: center;
+  padding: 24px;
+  border: 1px solid hsl(var(--primary-fg) / 0.14);
+  background-color: hsl(var(--primary) / 0.25);
 }
 
-.project-card {
-  background: #fff;
-  border: 1px solid #e4e4e0;
-  border-radius: 12px;
-  padding: 24px 28px;
-  width: 100%;
-  max-width: 560px;
-  text-align: center;
-  transition:
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.3s ease;
+.note p {
+  color: hsl(var(--primary-fg) / 0.75);
 }
 
-.project-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+/* flex-start keeps the underline as wide as the words, not the whole card */
+.note .link-underline {
+  align-self: flex-start;
 }
 
-.project-card h3 {
-  margin: 0 0 8px;
-  font-size: 18px;
-  font-weight: 600;
+@media (min-width: 768px) {
+  .editorial {
+    grid-template-columns: 7fr 5fr;
+    gap: 32px;
+  }
+
+  .note {
+    padding: 36px;
+  }
+
+  /* Side by side, the right column sets the row height — so the lead frame
+     drops its fixed ratio and fills instead. Both columns then finish flush
+     at the bottom however long the note copy runs. */
+  .editorial__lead {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .editorial__lead img {
+    flex: 1;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
 }
 
-.project-card p {
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  margin: 0;
-  color: #666;
-  font-size: 14px;
-  line-height: 1.5;
+/* =============================================================================
+   9. NUMBERED ROWS — stack & work
+   One pattern serving both sections. Rows are separated by hairlines with no
+   container around them; the index number supplies the only ornament.
+   ========================================================================== */
+
+.rows {
+  max-width: var(--editorial-max);
+  border-top: 1px solid hsl(var(--border) / 0.6);
 }
 
-/* ===== CONTACT ===== */
+.row {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 16px;
+  row-gap: 8px;
+  padding: 24px 0;
+  border-bottom: 1px solid hsl(var(--border) / 0.6);
+  transition: background-color 0.5s var(--ease-soft);
+}
 
-.contact-info {
+/* A barely-there wash on hover — enough to track which row you're on */
+.row:hover {
+  background-color: hsl(var(--secondary) / 0.5);
+}
+
+.row__index {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: hsl(var(--foreground) / 0.55);
+  padding-top: 6px;
+}
+
+.row__title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.row__title--lg {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.row__note {
+  grid-column: 2;
+  font-size: 15px;
+  line-height: 1.625;
+  max-width: 46ch;
+  color: hsl(var(--foreground) / 0.55);
+}
+
+.row__meta {
+  grid-column: 2;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: hsl(var(--primary) / 0.7);
+}
+
+.work__more {
+  display: inline-block;
+  margin-top: 40px;
+}
+
+/* Desktop widens to the 1 / 5 / 6-ish column split the rows were designed for */
+@media (min-width: 768px) {
+  .row {
+    grid-template-columns: 64px 5fr 6fr;
+    align-items: baseline;
+    column-gap: 32px;
+    padding: 32px 0;
+  }
+
+  .row__note {
+    grid-column: auto;
+  }
+
+  /* Work rows get a fourth column for status. It is a fixed width because the
+     label must never wrap, and the longest one is only "In progress". */
+  .row--work {
+    grid-template-columns: 64px 4fr 5fr 110px;
+  }
+
+  .row--work .row__meta {
+    grid-column: auto;
+    text-align: right;
+  }
+}
+
+/* =============================================================================
+   10. PAGE HEAD — inner pages
+   Inner pages open on type instead of an image, so they need a deep top offset
+   of their own to clear the fixed nav and keep the title floating.
+   ========================================================================== */
+
+.page-head {
+  padding-top: 160px;
+  padding-bottom: var(--section-y);
+}
+
+.page-head__back {
+  /* fit-content keeps the underline as wide as the words, not the column */
+  display: block;
+  width: fit-content;
+  margin-bottom: 64px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.page-head .eyebrow {
+  margin-bottom: 20px;
+}
+
+.page-head h1 {
+  max-width: 60rem;
+}
+
+.page-head__lede {
+  max-width: 42rem;
+  margin-top: 32px;
+  line-height: 1.625;
+  color: hsl(var(--foreground) / 0.6);
+}
+
+@media (min-width: 768px) {
+  .page-head {
+    padding-top: 192px;
+  }
+}
+
+/* =============================================================================
+   11. CONTACT
+   The only centred composition on the site, so the closing ask reads as an
+   ending rather than another section.
+   ========================================================================== */
+
+.contact__inner {
   display: flex;
   flex-direction: column;
-  list-style: none;
-  padding: 0;
-  gap: 8px;
-  animation: fadeInUp 0.5s ease-in-out;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+  padding: 48px 0;
 }
 
-.contact-info a {
-  color: #555555ad;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
+.contact__lede {
+  max-width: 36rem;
+  color: hsl(var(--foreground) / 0.6);
 }
 
-.contact-info a:hover {
-  color: #111;
+.contact__inner .button {
+  margin-top: 16px;
 }
 
-.contact-info ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* =============================================================================
+   12. FOOTER
+   Four quiet columns, then the oversized wordmark, which is the back-to-top
+   control. It is cropped tight on purpose — the letterforms are the object.
+   ========================================================================== */
+
+.footer {
+  padding-top: var(--section-y);
+  border-top: 1px solid hsl(var(--border) / 0.6);
+  overflow: hidden;
 }
 
-/* ===== SCROLL REVEAL ===== */
+.footer__grid {
+  display: grid;
+  gap: 48px;
+  padding-bottom: 64px;
+}
+
+.footer__tagline {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  max-width: 22ch;
+}
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__col .eyebrow {
+  margin-bottom: 4px;
+}
+
+.footer__col a {
+  font-size: 14px;
+  color: hsl(var(--foreground) / 0.6);
+  transition: color 0.3s var(--ease-soft);
+}
+
+.footer__col a:hover {
+  color: hsl(var(--foreground));
+}
+
+.footer__legal {
+  padding: 24px 0;
+  border-top: 1px solid hsl(var(--border) / 0.6);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--foreground) / 0.55);
+}
+
+.footer__wordmark {
+  display: block;
+  font-size: clamp(3.5rem, 21vw, 18rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.78;
+  color: hsl(var(--foreground) / 0.9);
+  transition: color 0.5s var(--ease-soft);
+}
+
+.footer__wordmark:hover {
+  color: hsl(var(--primary));
+}
+
+@media (min-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 32px;
+  }
+
+  .footer__tagline {
+    font-size: 1.375rem;
+  }
+}
+
+/* =============================================================================
+   13. SCROLL REVEAL
+   Opacity, blur and a short lift — no large movement. Elements are unobserved
+   after their first reveal (see scripts.js) so the page settles once read.
+   ========================================================================== */
 
 .reveal {
-  opacity: 0.001;
-  transform: translateY(20px);
-  filter: blur(4px);
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(16px);
   transition:
-    opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-    transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-    filter 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    opacity 0.9s var(--ease-editorial),
+    transform 0.9s var(--ease-editorial),
+    filter 0.9s var(--ease-editorial);
 }
 
-.reveal.visible {
+.reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
-  filter: blur(0px);
+  transform: none;
+  filter: blur(0);
 }
 
-/* stagger children 150ms apart */
-.reveal-group.visible > *:nth-child(1) {
-  transition-delay: 0ms;
-}
-.reveal-group.visible > *:nth-child(2) {
-  transition-delay: 150ms;
-}
-.reveal-group.visible > *:nth-child(3) {
-  transition-delay: 300ms;
-}
-.reveal-group.visible > *:nth-child(4) {
-  transition-delay: 450ms;
-}
-
-/* ===== RESPONSIVE — tablet (768px) ===== */
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 64px;
+/* Anything animated here is presentation only, so it is all safe to drop */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  .hero p {
-    font-size: 16px;
-    padding: 0 10px;
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 
-  .deck {
-    --card-w: 280px;
-    --card-h: 340px;
-    margin: 40px auto;
-  }
-
-  section {
-    padding: 50px 24px 80px;
-  }
-
-  .boxing-info {
-    padding: 24px 28px;
-    margin: 20px 16px;
-    width: auto;
-  }
-
-  .skill-grid {
-    gap: 24px;
-  }
-
-  .project-card {
-    padding: 20px;
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }
 
-/* ===== RESPONSIVE — phone (480px) ===== */
+/* =============================================================================
+   14. RESPONSIVE
+   768px is the only structural breakpoint (the grid rules above own it). What
+   is left is the phone-side trim.
+   ========================================================================== */
 
-@media (max-width: 480px) {
-  .hero {
-    padding: 50px 20px 80px;
-    padding-bottom: 100px;
-    gap: 40px;
+@media (max-width: 767px) {
+  /* The page is a single scroll, and the footer index repeats these links, so
+     the centre nav is dropped rather than hidden behind a menu button */
+  .nav__links {
+    display: none;
   }
 
-  .hero h1 {
-    font-size: 48px;
+  .hero__content {
+    padding-bottom: 72px;
   }
 
-  .hero p {
-    font-size: 15px;
-    padding: 0 4px;
+  .statement:nth-child(even) {
+    margin-left: 0;
   }
 
-  .deck {
-    --card-w: 220px;
-    --card-h: 280px;
-    margin: 20px auto;
-  }
-
-  section {
-    padding: 40px 16px 60px;
-  }
-
-  h2 {
-    font-size: 26px;
-  }
-
-  .boxing-info {
-    padding: 20px 20px;
-    margin: 12px 8px;
-  }
-
-  .skill-grid {
-    gap: 16px;
-  }
-
-  .skill {
-    padding: 8px 12px;
-    width: 64px;
-  }
-
-  .project-card {
-    padding: 16px;
-  }
-
-  nav {
-    gap: 4px;
-    padding: 8px 10px;
-  }
-
-  nav a {
-    font-size: 13px;
-    padding: 5px 12px;
+  .section__head,
+  .boxing__head {
+    margin-bottom: 40px;
   }
 }

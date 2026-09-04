@@ -3,174 +3,330 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dhairya Saluja</title>
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <title>Dhairya Saluja — Learning to build, learning to fight</title>
+    <meta
+      name="description"
+      content="Portfolio of Dhairya Saluja — a 14-year-old developer and boxer based in Muscat, Oman."
+    />
+
+    <!--
+      Inter Tight is the only family on the site. Hierarchy comes from weight
+      and opacity, not from adding more typefaces. 300 = the "release" half of
+      a headline, 500 = display, 400 = body.
+    -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300..700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
-      rel="stylesheet"
-    />
+
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <!-- nav -->
-    <div class="navrounding">
-      <nav>
-        <a href="#top">home</a>
-        <a href="#projects">projects</a>
-      </nav>
-    </div>
+    <!-- =====================================================================
+         NAV
+         Fixed, transparent, and blended with `difference` so the same markup
+         reads light over the dark hero and dark over the bone sections. It
+         hides on scroll down and returns on scroll up (see scripts.js).
+         ================================================================== -->
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a class="nav__mark" href="#top" aria-label="Back to top">DS</a>
 
-    <!-- hero -->
-    <div class="hero" id="top">
-      <div class="header">
-        <h1>
-          Dhairya <br />
-          Saluja
-        </h1>
-        <p>
-          My name is Dhairya, I'm 14 years old, and I live in Muscat, Oman. I'm
-          learning how to code, and I box at an intermediate level. This website
-          is mainly my portfolio and my practice website. I'm going to show of
-          all my hobbies here aswell. Thanks!
-        </p>
+        <nav class="nav__links" aria-label="Sections">
+          <a href="#about">About</a>
+          <a href="#boxing">Boxing</a>
+          <a href="#stack">Stack</a>
+          <a href="#work">Work</a>
+        </nav>
+
+        <a class="nav__action" href="#contact">Let's talk <span aria-hidden="true">&#8599;</span></a>
       </div>
-      <div class="deck">
-        <div
-          class="card"
-          style="--x: 0px; --rot: -3deg; --x-open: -60px; --rot-open: -12deg"
-        >
-          <img src="images/mirror.jpg" alt="Elevator mirror picture of me" />
-        </div>
-        <div
-          class="card"
-          style="--x: 0px; --rot: 3deg; --x-open: 60px; --rot-open: 12deg"
-        >
-          <img
-            src="images/boxing.jpg"
-            alt="Me throwing a jab during training at Fitbox"
-          />
-        </div>
-      </div>
-    </div>
+    </header>
 
-    <!-- boxing -->
-    <section class="boxing-info reveal-group">
-      <h2 class="reveal">Boxing</h2>
-      <div class="boxing-text reveal">
-        <p>
-          I absolutely love boxing and I've been training my hardest for a
-          little over a year now. I love it because of the repetition and the
-          feeling of being that tired in a sport that I feel I'm naturally
-          inclined towards.
-        </p>
-        <p>
-          Lately my training sessions have been directed towards working and
-          improving myself. My end goal is to fight at Fitbox Fighting
-          Championship 7 around November.
-        </p>
-      </div>
-      <a
-        class="reveal"
-        href="https://www.instagram.com/dhairya.bxng/"
-        target="_blank"
-        >Support my boxing journey as well!</a
-      >
-    </section>
+    <main>
+      <!-- ===================================================================
+           HERO
+           Full-viewport image with a vertical veil over it, content pinned to
+           the bottom edge. The headline is deliberately small for a hero — the
+           image and the empty space above the text do the work.
+           ================================================================ -->
+      <section class="hero" id="top">
+        <img
+          class="hero__media"
+          src="images/mirror.jpg"
+          alt="Dhairya photographed in an elevator mirror"
+          fetchpriority="high"
+        />
+        <div class="hero__veil" aria-hidden="true"></div>
 
-    <!-- skills -->
-    <section class="skills reveal-group">
-      <h2 class="reveal">Stack I use</h2>
-      <p class="skills-sub reveal">
-        Technologies I'm learning and building with.
-      </p>
+        <div class="hero__content container">
+          <p class="eyebrow">[ Muscat, Oman ]</p>
+          <h1 class="display display--sm">
+            Dhairya Saluja.
+            <span class="release">Fourteen, learning to build and learning to fight.</span>
+          </h1>
+          <p class="hero__cue">Scroll</p>
+        </div>
+      </section>
 
-      <div class="skill-grid reveal">
-        <div class="skill">
-          <img src="images/html.svg" alt="HTML" />
-          <span>HTML</span>
-        </div>
-        <div class="skill">
-          <img src="images/css.svg" alt="CSS" />
-          <span>CSS</span>
-        </div>
-        <div class="skill">
-          <img src="images/javascript.svg" alt="JavaScript" />
-          <span>JavaScript</span>
-        </div>
-        <div class="skill">
-          <img src="images/git.svg" alt="Git" />
-          <span>Git</span>
-        </div>
-        <div class="skill">
-          <img src="images/vercel.svg" alt="Vercel" />
-          <span>Vercel</span>
-        </div>
-        <div class="skill">
-          <img src="images/figma.svg" alt="Figma" />
-          <span>Figma</span>
-        </div>
-      </div>
-    </section>
+      <!-- ===================================================================
+           ABOUT
+           One statement, split into sentences. Each sentence sits at low
+           opacity until it is scrolled into view, so the paragraph reads as a
+           sequence of emphasis rather than a block that appears all at once.
+           ================================================================ -->
+      <section class="about section" id="about">
+        <div class="container">
+          <p class="eyebrow reveal">[ About ]</p>
 
-    <!-- projects -->
-    <section id="projects" class="projects-section reveal-group">
-      <h2 class="reveal">Projects</h2>
-      <p class="projects-sub reveal">
-        Things I've built and am working on.
-      </p>
+          <div class="about__statement">
+            <p class="statement reveal">
+              I'm Dhairya. I'm fourteen, I live in Muscat, and I'm teaching
+              myself to write software.
+            </p>
+            <p class="statement reveal">
+              This site is both the portfolio and the practice — every section
+              here is something I built to understand how it works.
+            </p>
+            <p class="statement reveal">
+              Outside of code I box, which turns out to be the same discipline:
+              repetition until it stops being hard.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div class="project-list reveal">
-        <div class="project-card">
-          <h3>Weyn</h3>
-          <p>
-            An event discovery and ticketing app for Muscat. This project
-            is on hold for now, I hope to continue it in the future!
+      <!-- ===================================================================
+           BOXING
+           The one light section on the page. Flipping the canvas to bone here
+           marks boxing as a separate part of the story from the code, and
+           gives the two photographs a warmer ground to sit on.
+           ================================================================ -->
+      <section class="boxing section section--light" id="boxing">
+        <div class="container">
+          <header class="boxing__head">
+            <p class="eyebrow reveal">[ Boxing ]</p>
+            <h2 class="display display--md reveal">
+              A little over a year in.
+              <span class="release">Working toward a first fight.</span>
+            </h2>
+          </header>
+
+          <!-- 7 / 5 split on desktop: one dominant frame, one supporting stack -->
+          <div class="editorial">
+            <figure class="editorial__lead reveal">
+              <img
+                src="images/boxing.jpg"
+                alt="Dhairya throwing a jab during training at Fitbox"
+                loading="lazy"
+              />
+              <figcaption>Fitbox, Muscat — pad work</figcaption>
+            </figure>
+
+            <div class="editorial__aside">
+              <div class="note reveal">
+                <p>
+                  I love boxing for the repetition, and for how tired it makes
+                  me in a sport I feel naturally suited to. Lately my sessions
+                  have been aimed less at conditioning and more at fixing what
+                  I actually get wrong.
+                </p>
+                <p>
+                  The goal is Fitbox Fighting Championship 7, around November.
+                </p>
+                <a
+                  class="link-underline"
+                  href="https://www.instagram.com/dhairya.bxng/"
+                  target="_blank"
+                  rel="noopener"
+                  >Follow the training <span aria-hidden="true">&#8599;</span></a
+                >
+              </div>
+
+              <figure class="editorial__support reveal">
+                <img
+                  src="images/parkingmirror.jpeg"
+                  alt="Dhairya photographed in a parking garage mirror"
+                  loading="lazy"
+                />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           STACK
+           Numbered rows on hairlines instead of a grid of logos. The tools are
+           metadata, not the point of the page, so they get metadata treatment.
+           ================================================================ -->
+      <section class="stack section" id="stack">
+        <div class="container">
+          <header class="section__head">
+            <p class="eyebrow reveal">[ Stack ]</p>
+            <h2 class="display display--md reveal">
+              What I build with.
+              <span class="release">Six tools, learned in this order.</span>
+            </h2>
+          </header>
+
+          <ol class="rows reveal">
+            <li class="row">
+              <span class="row__index">01</span>
+              <h3 class="row__title">HTML</h3>
+              <p class="row__note">Structure and semantics. Where everything started.</p>
+            </li>
+            <li class="row">
+              <span class="row__index">02</span>
+              <h3 class="row__title">CSS</h3>
+              <p class="row__note">Layout, type and motion. The part I enjoy most.</p>
+            </li>
+            <li class="row">
+              <span class="row__index">03</span>
+              <h3 class="row__title">JavaScript</h3>
+              <p class="row__note">Behaviour, the DOM, and working with APIs.</p>
+            </li>
+            <li class="row">
+              <span class="row__index">04</span>
+              <h3 class="row__title">Git</h3>
+              <p class="row__note">Version control, branches, and undoing my mistakes.</p>
+            </li>
+            <li class="row">
+              <span class="row__index">05</span>
+              <h3 class="row__title">Vercel</h3>
+              <p class="row__note">Deploys and previews for everything I ship.</p>
+            </li>
+            <li class="row">
+              <span class="row__index">06</span>
+              <h3 class="row__title">Figma</h3>
+              <p class="row__note">Drawing the thing before I try to code the thing.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           WORK
+           Same numbered-row pattern as the stack, one step louder: bigger
+           titles and a status column on the right. projects.html carries the
+           longer write-ups.
+           ================================================================ -->
+      <section class="work section" id="work">
+        <div class="container">
+          <header class="section__head">
+            <p class="eyebrow reveal">[ Selected Work ]</p>
+            <h2 class="display display--md reveal">
+              Three projects.
+              <span class="release">Two finished, one shelved.</span>
+            </h2>
+          </header>
+
+          <ol class="rows rows--work reveal">
+            <li class="row row--work">
+              <span class="row__index">01</span>
+              <h3 class="row__title row__title--lg">Weyn</h3>
+              <p class="row__note">
+                An event discovery and ticketing app for Muscat. Shelved for
+                now — I want to come back to it with more experience.
+              </p>
+              <span class="row__meta">On hold</span>
+            </li>
+            <li class="row row--work">
+              <span class="row__index">02</span>
+              <h3 class="row__title row__title--lg">This website</h3>
+              <p class="row__note">
+                Built from scratch while learning HTML, CSS and JavaScript.
+                You're reading it right now.
+              </p>
+              <span class="row__meta">Live</span>
+            </li>
+            <li class="row row--work">
+              <span class="row__index">03</span>
+              <h3 class="row__title row__title--lg">Weather App</h3>
+              <p class="row__note">
+                Real-time forecasts from a public API. My practice ground for
+                fetch, promises and async JavaScript.
+              </p>
+              <span class="row__meta">In progress</span>
+            </li>
+          </ol>
+
+          <a class="link-underline work__more reveal" href="projects.html"
+            >All projects <span aria-hidden="true">&#8599;</span></a
+          >
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           CONTACT
+           Closing CTA. The button is rectangular and outlined, and fills on
+           hover — the one place on the page where a solid block of sand is
+           allowed to appear.
+           ================================================================ -->
+      <section class="contact section" id="contact">
+        <div class="container contact__inner">
+          <p class="eyebrow reveal">[ Contact ]</p>
+          <h2 class="display display--lg reveal">
+            Say hello.
+            <span class="release">I reply to everything.</span>
+          </h2>
+          <p class="contact__lede reveal">
+            Feedback on the code, questions about the boxing, or anything you
+            think a fourteen-year-old should be building next.
           </p>
+          <a class="button reveal" href="mailto:dhairyarsaluja@gmail.com">
+            Email me <span aria-hidden="true">&#8599;</span>
+          </a>
         </div>
+      </section>
+    </main>
 
-        <div class="project-card">
-          <h3>This Website</h3>
-          <p>
-            My portfolio, built from scratch while learning HTML, CSS and
-            JavaScript. You're looking at it right now!
+    <!-- =====================================================================
+         FOOTER
+         Four columns of quiet links, then the oversized wordmark, which is the
+         back-to-top control rather than a logo lockup.
+         ================================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <p class="footer__tagline">
+            Learning in public from Muscat, Oman.
+            <span class="release">Building, boxing, repeating.</span>
           </p>
-        </div>
 
-        <div class="project-card">
-          <h3>Weather App</h3>
-          <p>
-            A clean weather app that fetches real-time forecasts. Practice
-            project for working with APIs and async JavaScript.
-          </p>
-        </div>
-      </div>
-    </section>
+          <nav class="footer__col" aria-label="Index">
+            <p class="eyebrow">Index</p>
+            <a href="#about">About</a>
+            <a href="#boxing">Boxing</a>
+            <a href="#stack">Stack</a>
+            <a href="projects.html">Projects</a>
+          </nav>
 
-    <!-- contact -->
-    <section id="contact-info" class="reveal-group">
-      <div class="contact-info reveal">
-        <h2>Contact</h2>
-        <ul>
-          <li>dhairyarsaluja@gmail.com</li>
-          <li>
-            Github:
-            <a href="https://github.com/dhairyasalujaa" target="_blank"
-              >dhairyasalujaa</a
+          <nav class="footer__col" aria-label="Elsewhere">
+            <p class="eyebrow">Elsewhere</p>
+            <a href="https://github.com/dhairyasalujaa" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.instagram.com/dhairya.bxng/" target="_blank" rel="noopener"
+              >Instagram</a
             >
-          </li>
-        </ul>
+          </nav>
+
+          <nav class="footer__col" aria-label="Connect">
+            <p class="eyebrow">Connect</p>
+            <a href="mailto:dhairyarsaluja@gmail.com">dhairyarsaluja@gmail.com</a>
+          </nav>
+        </div>
+
+        <p class="footer__legal">&copy; 2026 Dhairya Saluja — Built by hand</p>
+
+        <a class="footer__wordmark" href="#top" aria-label="Back to top">DHAIRYA</a>
       </div>
-    </section>
+    </footer>
+
+    <!-- Lenis powers the smooth scroll the reveals are timed against -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="scripts.js"></script>
   </body>
 </html>
