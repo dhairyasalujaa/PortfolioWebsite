@@ -1,10 +1,3 @@
-const lenis = new Lenis();
-
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-
 let projects = [
   "Weyn",
   "Portfolio",
@@ -15,7 +8,6 @@ let projects = [
 for (let i = 0; i < projects.length; i++) {
   console.log(projects[i]);
 }
-requestAnimationFrame(raf);
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -34,11 +26,9 @@ document
 
 /* ===== NAV BACKGROUND =====
 
-   The nav sits over the hero photo with no background of its own, and gains
-   one once you have scrolled past the top. Lenis keeps window.scrollY in
-   sync, so reading it here works the same as it would without smooth scroll.
-   40px is far enough down that a phone address bar settling on load does not
-   flip it on its own. */
+  The nav sits over the hero photo with no background of its own, and gains
+  one once you have scrolled past the top. 40px is far enough down that a
+  phone address bar settling on load does not flip it on its own. */
 
 const nav = document.getElementById("nav");
 const SOLID_AFTER = 40;

@@ -1,10 +1,3 @@
-/* ===== TOKENS =====
-
-   The KHAT Studio colour scheme: warm black rather than pure black, bone
-   rather than pure white, and sand as the single accent. Stored as bare HSL
-   channels so each one can also be used at a lower opacity, which is where
-   all the grey text on the page comes from. */
-
 :root {
   --background: 28 10% 11%; /* warm black, never #000 */
   --foreground: 34 22% 92%; /* bone, never #fff */
@@ -172,6 +165,7 @@ section {
 .nav-links a:hover,
 .nav-contact:hover {
   color: hsl(var(--foreground));
+  border-color: hsl(var(--line));
 }
 
 .nav-contact {
