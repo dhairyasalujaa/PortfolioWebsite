@@ -1,13 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects — Dhairya Saluja</title>
-    <meta
-      name="description"
-      content="Everything Dhairya Saluja has built while learning to code — finished, in progress and shelved."
-    />
+    <title>My projects</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,180 +14,70 @@
 
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <!-- =====================================================================
-         NAV
-         Same component as the homepage. Section links route home first, since
-         those sections only exist there.
-         ================================================================== -->
-    <header class="nav" id="nav">
-      <div class="nav__inner">
-        <a class="nav__mark" href="index.html" aria-label="Home">DS</a>
+    <!-- nav: same component as the homepage. Section links route home first,
+         since those sections only exist there. There is no hero photo on this
+         page for the nav to sit over, so it carries scrolled from the
+         start and needs no script to switch it on. -->
+    <header class="nav scrolled" id="nav">
+      <div class="nav-inner">
+        <a class="nav-logo" href="index.html">DS</a>
 
-        <nav class="nav__links" aria-label="Sections">
-          <a href="index.html#about">About</a>
-          <a href="index.html#boxing">Boxing</a>
-          <a href="index.html#stack">Stack</a>
-          <a href="projects.html">Work</a>
+        <nav class="nav-links" aria-label="Sections">
+          <a href="index.html#boxing">boxing</a>
+          <a href="index.html#skills">stack</a>
+          <a href="projects.html">projects</a>
         </nav>
 
-        <a class="nav__action" href="mailto:dhairyarsaluja@gmail.com"
-          >Let's talk <span aria-hidden="true">&#8599;</span></a
-        >
+        <a class="nav-contact" href="index.html#contact-info">contact</a>
       </div>
     </header>
 
-    <main>
-      <!-- ===================================================================
-           PAGE HEAD
-           Deep top offset so the title starts well clear of the nav. The empty
-           space above it is the point.
-           ================================================================ -->
-      <section class="page-head" id="top">
-        <div class="container">
-          <a class="link-underline page-head__back" href="index.html"
-            ><span aria-hidden="true">&#8592;</span> Back</a
-          >
-
-          <p class="eyebrow">[ Projects ]</p>
-          <h1 class="display display--lg">
-            Everything I've built.
-            <span class="release">Finished, halfway, and shelved.</span>
-          </h1>
-          <p class="page-head__lede">
-            I keep the abandoned ones on the list too — they're the reason the
-            later ones work.
+    <section id="projects" class="projects-section page">
+      <h2>Projects</h2>
+      <p class="projects-sub">
+        These are my projects! Thanks for checking them out haha.
+      </p>
+      <div class="project-list">
+        <div class="Weyn project-card">
+          <h3>Weyn</h3>
+          <p>
+            An event discovery and ticketing app for Muscat! Sadly this project
+            is on hold, I hope to continue it in the future!
           </p>
         </div>
-      </section>
-
-      <!-- ===================================================================
-           PROJECT INDEX
-           Same numbered-row pattern as the homepage, one entry per project,
-           separated by hairlines.
-           ================================================================ -->
-      <section class="section">
-        <div class="container">
-          <ol class="rows rows--work">
-            <li class="row row--work reveal">
-              <span class="row__index">01</span>
-              <h2 class="row__title row__title--lg">Weyn</h2>
-              <p class="row__note">
-                An event discovery and ticketing app for Muscat — find what's
-                on this weekend and buy a ticket without leaving the app. I got
-                far enough to know it needed a backend I couldn't write yet, so
-                it's parked until I can.
-              </p>
-              <span class="row__meta">On hold</span>
-            </li>
-
-            <li class="row row--work reveal">
-              <span class="row__index">02</span>
-              <h2 class="row__title row__title--lg">This website</h2>
-              <p class="row__note">
-                Hand-written HTML and CSS, no framework and no build step. It
-                started as a page to practise on and turned into the portfolio.
-                Rebuilt from scratch once I understood layout properly.
-              </p>
-              <span class="row__meta">Live</span>
-            </li>
-
-            <li class="row row--work reveal">
-              <span class="row__index">03</span>
-              <h2 class="row__title row__title--lg">Weather App</h2>
-              <p class="row__note">
-                Real-time forecasts from a public API. Mostly an excuse to learn
-                fetch, promises and what to render while a request is still in
-                flight.
-              </p>
-              <span class="row__meta">In progress</span>
-            </li>
-
-            <li class="row row--work reveal">
-              <span class="row__index">04</span>
-              <h2 class="row__title row__title--lg">Todo list</h2>
-              <p class="row__note">
-                The classic first project. Adding, checking off and deleting
-                items, which is where the DOM finally clicked for me.
-              </p>
-              <span class="row__meta">Archived</span>
-            </li>
-
-            <li class="row row--work reveal">
-              <span class="row__index">05</span>
-              <h2 class="row__title row__title--lg">Study Timer</h2>
-              <p class="row__note">
-                A focus timer I actually use before exams. Small enough to
-                finish in a weekend, which was the whole idea.
-              </p>
-              <span class="row__meta">Live</span>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           CONTACT
-           Same closing CTA as the homepage, so both pages end the same way.
-           ================================================================ -->
-      <section class="contact section">
-        <div class="container contact__inner">
-          <p class="eyebrow reveal">[ Contact ]</p>
-          <h2 class="display display--lg reveal">
-            Seen something you'd fix?
-            <span class="release">Tell me.</span>
-          </h2>
-          <p class="contact__lede reveal">
-            Code review, bug reports and better ideas are all welcome.
+        <div class="Portfolio project-card">
+          <h3>This website</h3>
+          <p>
+            My portfolio, built from scratch while learning HTML, CSS and
+            JavaScript!!
           </p>
-          <a class="button reveal" href="mailto:dhairyarsaluja@gmail.com">
-            Email me <span aria-hidden="true">&#8599;</span>
-          </a>
         </div>
-      </section>
-    </main>
-
-    <!-- =====================================================================
-         FOOTER
-         ================================================================== -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer__grid">
-          <p class="footer__tagline">
-            Learning in public from Muscat, Oman.
-            <span class="release">Building, boxing, repeating.</span>
-          </p>
-
-          <nav class="footer__col" aria-label="Index">
-            <p class="eyebrow">Index</p>
-            <a href="index.html#about">About</a>
-            <a href="index.html#boxing">Boxing</a>
-            <a href="index.html#stack">Stack</a>
-            <a href="projects.html">Projects</a>
-          </nav>
-
-          <nav class="footer__col" aria-label="Elsewhere">
-            <p class="eyebrow">Elsewhere</p>
-            <a href="https://github.com/dhairyasalujaa" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.instagram.com/dhairya.bxng/" target="_blank" rel="noopener"
-              >Instagram</a
-            >
-          </nav>
-
-          <nav class="footer__col" aria-label="Connect">
-            <p class="eyebrow">Connect</p>
-            <a href="mailto:dhairyarsaluja@gmail.com">dhairyarsaluja@gmail.com</a>
-          </nav>
-        </div>
-
-        <p class="footer__legal">&copy; 2026 Dhairya Saluja — Built by hand</p>
-
-        <a class="footer__wordmark" href="#top" aria-label="Back to top">DHAIRYA</a>
       </div>
-    </footer>
+    </section>
 
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-    <script src="scripts.js"></script>
+    <!-- footer -->
+    <footer class="site-footer">
+      <div class="footer-columns">
+        <p class="footer-tagline">Learning in public from Muscat, Oman.</p>
+
+        <nav class="footer-col" aria-label="Index">
+          <p class="footer-heading">Index</p>
+          <a href="index.html#boxing">Boxing</a>
+          <a href="index.html#skills">Stack</a>
+          <a href="projects.html">Projects</a>
+        </nav>
+
+        <nav class="footer-col" aria-label="Elsewhere">
+          <p class="footer-heading">Elsewhere</p>
+          <a href="https://github.com/dhairyasalujaa" target="_blank">GitHub</a>
+          <a href="https://www.instagram.com/dhairya.bxng/" target="_blank">Instagram</a>
+        </nav>
+      </div>
+
+      <p class="footer-legal">&copy; 2026 Dhairya Saluja</p>
+
+      <a class="footer-wordmark" href="index.html">DHAIRYA</a>
+    </footer>
   </body>
 </html>

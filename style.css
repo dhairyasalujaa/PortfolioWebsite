@@ -1,64 +1,22 @@
-/* =============================================================================
-   Dhairya Saluja — portfolio
-   Built on the KHAT Studio design system: warm black, bone and sand, one
-   grotesk at contrasting weights, hairline rules, square corners, and motion
-   that reveals hierarchy instead of decorating it.
+/* ===== TOKENS =====
 
-   Contents
-     1.  Tokens
-     2.  Reset & base
-     3.  Layout primitives
-     4.  Typography roles
-     5.  Nav
-     6.  Hero
-     7.  About
-     8.  Boxing (light section)
-     9.  Numbered rows — stack & work
-     10. Page head — inner pages
-     11. Contact
-     12. Footer
-     13. Scroll reveal
-     14. Responsive
-   ========================================================================== */
-
-/* =============================================================================
-   1. TOKENS
-   Colours are stored as bare HSL channels so any of them can be used at an
-   arbitrary opacity via hsl(var(--x) / .5). Opacity is a real part of this
-   palette — most "grey" text here is just foreground turned down.
-   ========================================================================== */
+   The KHAT Studio colour scheme: warm black rather than pure black, bone
+   rather than pure white, and sand as the single accent. Stored as bare HSL
+   channels so each one can also be used at a lower opacity, which is where
+   all the grey text on the page comes from. */
 
 :root {
-  /* Colour */
   --background: 28 10% 11%; /* warm black, never #000 */
   --foreground: 34 22% 92%; /* bone, never #fff */
-  --secondary: 28 10% 17%;
-  --primary: 32 28% 78%; /* sand — CTAs and accents only */
-  --primary-fg: 28 14% 12%;
-  --border: 28 12% 22%;
+  --surface: 28 10% 17%; /* cards */
+  --sand: 32 28% 78%; /* accent */
+  --line: 28 12% 22%; /* hairlines and card borders */
 
-  /* Measure */
-  --content-max: 1600px;
-  --editorial-max: 1400px;
-  --gutter: 24px;
-  --section-y: 96px;
-
-  /* Motion — one easing family, quick start and soft landing */
-  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
+  --nav-height: 64px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (min-width: 768px) {
-  :root {
-    --gutter: 40px;
-    --section-y: 128px;
-  }
-}
-
-/* =============================================================================
-   2. RESET & BASE
-   ========================================================================== */
+/* ===== GLOBAL ===== */
 
 *,
 *::before,
@@ -67,144 +25,75 @@
 }
 
 html {
-  /* Lenis drives the smooth scroll; this is the no-JS fallback */
+  /* Anchored sections would otherwise land underneath the fixed nav */
+  scroll-padding-top: var(--nav-height);
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: "Inter Tight", system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+  font-family: "Inter Tight", Arial, sans-serif;
   color: hsl(var(--foreground));
   background-color: hsl(var(--background));
   -webkit-font-smoothing: antialiased;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-ol,
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 h1,
 h2,
-h3,
-p,
-figure {
-  margin: 0;
-}
-
-/* The custom cursor is decorative, so focus has to stay visible on its own */
-:focus-visible {
-  outline: 1px solid hsl(var(--primary));
-  outline-offset: 4px;
-}
-
-/* =============================================================================
-   3. LAYOUT PRIMITIVES
-   ========================================================================== */
-
-.container {
-  width: 100%;
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-}
-
-.section {
-  padding: var(--section-y) 0;
-}
-
-/* Every major section is divided by a hairline rather than a card edge */
-.section + .section {
-  border-top: 1px solid hsl(var(--border) / 0.6);
-}
-
-/* The one inverted section on the page */
-.section--light {
-  background-color: hsl(var(--foreground));
-  color: hsl(var(--primary-fg));
-}
-
-.section__head {
-  max-width: 60rem;
-  margin-bottom: 64px;
-}
-
-/* =============================================================================
-   4. TYPOGRAPHY ROLES
-   Three roles carry the whole site: eyebrow, display, body. A headline states
-   its idea in medium weight, then releases the rest in light and dimmed —
-   that weight contrast is the hierarchy, so nothing here should go bold.
-   ========================================================================== */
-
-.eyebrow {
-  font-size: 11px;
+h3 {
   font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: hsl(var(--foreground) / 0.6);
+  letter-spacing: -1px;
 }
 
-.section--light .eyebrow {
-  color: hsl(var(--primary-fg) / 0.65);
+h2 {
+  font-size: 32px;
 }
 
-.display {
-  font-weight: 500;
-  letter-spacing: -0.045em;
-  line-height: 0.95;
-  text-wrap: balance;
-}
-
-.display--sm {
-  font-size: clamp(1.5rem, 4vw, 1.875rem);
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  max-width: 42rem;
-}
-
-.display--md {
-  font-size: clamp(2.25rem, 6vw, 3.75rem);
-}
-
-.display--lg {
-  font-size: clamp(3rem, 8vw, 4.5rem);
-}
-
-/* The second half of a headline: same family, lighter, quieter */
-.release {
-  display: block;
+p {
   font-weight: 300;
-  color: hsl(var(--foreground) / 0.45);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
-.section--light .release {
-  color: hsl(var(--primary-fg) / 0.55);
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Right-to-left underline draw — the site's only link decoration */
-.link-underline {
+section {
+  padding: 70px 40px 120px;
+  border-top: 1px solid hsl(var(--line) / 0.6);
+  text-align: center;
+}
+
+/* Inner pages open straight into a section with no hero above it, so they
+   need extra top padding to clear the fixed nav */
+.page {
+  padding-top: 140px;
+  border-top: 0;
+}
+
+/* ===== HOVER UNDERLINE =====
+
+   The line draws in from the right on hover. width: fit-content keeps it as
+   wide as the words rather than the whole centred column. */
+
+.link {
   position: relative;
   display: inline-block;
-  font-size: 14px;
+  width: fit-content;
   color: hsl(var(--foreground) / 0.7);
-  transition: color 0.3s var(--ease-soft);
+  text-decoration: none;
+  transition: color 0.3s var(--ease);
 }
 
-.link-underline::after {
+.link::after {
   content: "";
   position: absolute;
   right: 0;
@@ -212,592 +101,530 @@ figure {
   width: 0;
   height: 1px;
   background-color: currentColor;
-  transition: width 0.5s var(--ease-draw);
+  transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.link-underline:hover {
+.link:hover {
   color: hsl(var(--foreground));
 }
 
-.link-underline:hover::after {
+.link:hover::after {
   width: 100%;
 }
 
-.section--light .link-underline {
-  color: hsl(var(--primary-fg) / 0.7);
-}
+/* ===== NAV =====
 
-.section--light .link-underline:hover {
-  color: hsl(var(--primary-fg));
-}
-
-/* Outlined rectangle that fills on hover. Pills are reserved elsewhere; the
-   primary action gets the squarest, plainest shape on the page. */
-.button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 18px 32px;
-  border: 1px solid hsl(var(--foreground) / 0.4);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  transition:
-    background-color 0.5s var(--ease-soft),
-    color 0.5s var(--ease-soft),
-    border-color 0.5s var(--ease-soft);
-}
-
-.button:hover {
-  background-color: hsl(var(--foreground));
-  border-color: hsl(var(--foreground));
-  color: hsl(var(--background));
-}
-
-/* =============================================================================
-   5. NAV
-   `difference` blending lets one set of colours read correctly over both the
-   dark hero and the bone boxing section, so there is no scroll-position class
-   to keep in sync. Hiding on scroll down is handled in scripts.js.
-   ========================================================================== */
+   Fixed bar across the top. Transparent while the hero photo is behind it,
+   then it picks up a blurred background and a hairline once you scroll. */
 
 .nav {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 50;
+  z-index: 100;
   width: 100%;
-  mix-blend-mode: difference;
-  transition: transform 0.5s ease-out;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
 }
 
-.nav--hidden {
-  transform: translateY(-100%);
+.nav.scrolled {
+  background-color: hsl(var(--background) / 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: hsl(var(--line) / 0.6);
 }
 
-.nav__inner {
+.nav-inner {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 24px;
-  height: 64px;
-  max-width: var(--content-max);
+  height: var(--nav-height);
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 var(--gutter);
+  padding: 0 40px;
 }
 
-.nav__mark {
+.nav-logo {
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 1px;
   color: hsl(var(--foreground));
+  text-decoration: none;
 }
 
-.nav__links {
+.nav-links {
   display: flex;
   justify-content: center;
-  gap: 28px;
+  gap: 32px;
 }
 
-.nav__links a,
-.nav__action {
-  font-size: 13px;
+.nav-links a,
+.nav-contact {
+  font-size: 14px;
   color: hsl(var(--foreground) / 0.7);
-  transition: color 0.3s var(--ease-soft);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.nav__links a:hover,
-.nav__action:hover {
+.nav-links a:hover,
+.nav-contact:hover {
   color: hsl(var(--foreground));
 }
 
-.nav__action {
+.nav-contact {
   justify-self: end;
-  white-space: nowrap;
 }
 
-/* =============================================================================
-   6. HERO
-   Full-viewport image, veiled top and bottom, with the text pinned low. Most
-   of the frame is intentionally left empty.
-   ========================================================================== */
+/* ===== HERO ===== */
 
 .hero {
   position: relative;
-  display: flex;
-  align-items: flex-end;
   min-height: 100svh;
+  padding: 70px 40px 120px;
+  animation: fadeInUp 0.4s ease-in-out;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
   overflow: hidden;
 }
 
-.hero__media,
-.hero__veil {
+.hero-photo,
+.hero-veil {
   position: absolute;
   inset: 0;
 }
 
-.hero__media {
+.hero-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 25%;
 }
 
-/* Dark at both ends, open in the middle: the top band keeps the blended nav
-   legible, the bottom band gives the headline something to sit on, and the
-   photograph is left alone through the middle. */
-.hero__veil {
+/* Dark at both ends, open through the middle: the top band keeps the nav
+   legible, the bottom band holds the heading, and the photo is left alone in
+   between. */
+.hero-veil {
   background: linear-gradient(
     to bottom,
-    hsl(var(--background) / 0.72) 0%,
-    hsl(var(--background) / 0.22) 40%,
-    hsl(var(--background) / 0.88) 100%
+    hsl(var(--background) / 0.75) 0%,
+    hsl(var(--background) / 0.6) 40%,
+    hsl(var(--background) / 0.92) 100%
   );
 }
 
-.hero__content {
+/* The photo and veil are absolutely positioned, so the header needs to be
+   lifted above them */
+.header {
   position: relative;
-  padding-bottom: 96px;
+  z-index: 1;
 }
 
-.hero__content .eyebrow {
-  margin-bottom: 20px;
+.header {
+  flex: 1;
 }
 
-.hero__cue {
-  margin-top: 40px;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  color: hsl(var(--foreground) / 0.6);
+.hero h1 {
+  margin: 0 0 16px;
+  font-size: 100px;
+  line-height: 1;
+  letter-spacing: -4px;
 }
 
-/* =============================================================================
-   7. ABOUT
-   Sentences are separate reveal targets, so the paragraph resolves one line at
-   a time as it scrolls in rather than appearing as a single block.
-   ========================================================================== */
-
-.about__statement {
-  max-width: var(--editorial-max);
-  margin-top: 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+.hero p {
+  font-size: 18px;
+  color: hsl(var(--foreground) / 0.85);
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.statement {
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1.25;
-  max-width: 34ch;
-}
+/* ===== BOXING ===== */
 
-/* Every second sentence steps in, so the block reads as a staircase */
-.statement:nth-child(even) {
-  margin-left: auto;
-  color: hsl(var(--foreground) / 0.65);
-}
-
-/* =============================================================================
-   8. BOXING — light section
-   A 7/5 editorial split: one dominant frame on the left, a note card and a
-   supporting frame stacked on the right.
-   ========================================================================== */
-
-.boxing__head {
-  max-width: 60rem;
-  margin-bottom: 64px;
-}
-
-.boxing__head .eyebrow {
-  margin-bottom: 20px;
-}
-
-.editorial {
-  display: grid;
-  gap: 24px;
-  max-width: var(--editorial-max);
-}
-
-/* Stacked first: 4:5 for the lead frame, 5:4 for the support — portrait then
-   landscape, so the second frame never just repeats the first. */
-.editorial__lead img,
-.editorial__support img {
-  width: 100%;
-  object-fit: cover;
-  border: 1px solid hsl(var(--primary-fg) / 0.12);
-}
-
-.editorial__lead img {
-  aspect-ratio: 4 / 5;
-}
-
-.editorial__support img {
-  aspect-ratio: 5 / 4;
-}
-
-.editorial__lead figcaption {
-  margin-top: 12px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: hsl(var(--primary-fg) / 0.65);
-}
-
-.editorial__aside {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.note {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 24px;
-  border: 1px solid hsl(var(--primary-fg) / 0.14);
-  background-color: hsl(var(--primary) / 0.25);
-}
-
-.note p {
-  color: hsl(var(--primary-fg) / 0.75);
-}
-
-/* flex-start keeps the underline as wide as the words, not the whole card */
-.note .link-underline {
-  align-self: flex-start;
-}
-
-@media (min-width: 768px) {
-  .editorial {
-    grid-template-columns: 7fr 5fr;
-    gap: 32px;
-  }
-
-  .note {
-    padding: 36px;
-  }
-
-  /* Side by side, the right column sets the row height — so the lead frame
-     drops its fixed ratio and fills instead. Both columns then finish flush
-     at the bottom however long the note copy runs. */
-  .editorial__lead {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .editorial__lead img {
-    flex: 1;
-    min-height: 0;
-    aspect-ratio: auto;
-  }
-}
-
-/* =============================================================================
-   9. NUMBERED ROWS — stack & work
-   One pattern serving both sections. Rows are separated by hairlines with no
-   container around them; the index number supplies the only ornament.
-   ========================================================================== */
-
-.rows {
-  max-width: var(--editorial-max);
-  border-top: 1px solid hsl(var(--border) / 0.6);
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  column-gap: 16px;
-  row-gap: 8px;
-  padding: 24px 0;
-  border-bottom: 1px solid hsl(var(--border) / 0.6);
-  transition: background-color 0.5s var(--ease-soft);
-}
-
-/* A barely-there wash on hover — enough to track which row you're on */
-.row:hover {
-  background-color: hsl(var(--secondary) / 0.5);
-}
-
-.row__index {
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: hsl(var(--foreground) / 0.55);
-  padding-top: 6px;
-}
-
-.row__title {
-  font-size: 1.25rem;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-}
-
-.row__title--lg {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  letter-spacing: -0.045em;
-  line-height: 1.05;
-}
-
-.row__note {
-  grid-column: 2;
-  font-size: 15px;
-  line-height: 1.625;
-  max-width: 46ch;
-  color: hsl(var(--foreground) / 0.55);
-}
-
-.row__meta {
-  grid-column: 2;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: hsl(var(--primary) / 0.7);
-}
-
-.work__more {
-  display: inline-block;
-  margin-top: 40px;
-}
-
-/* Desktop widens to the 1 / 5 / 6-ish column split the rows were designed for */
-@media (min-width: 768px) {
-  .row {
-    grid-template-columns: 64px 5fr 6fr;
-    align-items: baseline;
-    column-gap: 32px;
-    padding: 32px 0;
-  }
-
-  .row__note {
-    grid-column: auto;
-  }
-
-  /* Work rows get a fourth column for status. It is a fixed width because the
-     label must never wrap, and the longest one is only "In progress". */
-  .row--work {
-    grid-template-columns: 64px 4fr 5fr 110px;
-  }
-
-  .row--work .row__meta {
-    grid-column: auto;
-    text-align: right;
-  }
-}
-
-/* =============================================================================
-   10. PAGE HEAD — inner pages
-   Inner pages open on type instead of an image, so they need a deep top offset
-   of their own to clear the fixed nav and keep the title floating.
-   ========================================================================== */
-
-.page-head {
-  padding-top: 160px;
-  padding-bottom: var(--section-y);
-}
-
-.page-head__back {
-  /* fit-content keeps the underline as wide as the words, not the column */
-  display: block;
-  width: fit-content;
-  margin-bottom: 64px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.page-head .eyebrow {
-  margin-bottom: 20px;
-}
-
-.page-head h1 {
-  max-width: 60rem;
-}
-
-.page-head__lede {
-  max-width: 42rem;
-  margin-top: 32px;
-  line-height: 1.625;
-  color: hsl(var(--foreground) / 0.6);
-}
-
-@media (min-width: 768px) {
-  .page-head {
-    padding-top: 192px;
-  }
-}
-
-/* =============================================================================
-   11. CONTACT
-   The only centred composition on the site, so the closing ask reads as an
-   ending rather than another section.
-   ========================================================================== */
-
-.contact__inner {
+.boxing-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  text-align: center;
-  padding: 48px 0;
+  gap: 8px;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: hsl(var(--surface));
+  border: 1px solid hsl(var(--line) / 0.6);
+  border-radius: 16px;
+  padding: 32px 40px;
+  transition:
+    transform 0.2s var(--ease),
+    box-shadow 0.2s var(--ease),
+    border-color 0.2s var(--ease);
 }
 
-.contact__lede {
-  max-width: 36rem;
+.boxing-info:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  border-color: hsl(var(--line));
+}
+
+.boxing-text {
+  max-width: 620px;
+  margin: 0 auto 24px;
+}
+
+.boxing-info p {
+  color: hsl(var(--foreground) / 0.7);
+}
+
+/* ===== SKILLS ===== */
+
+.skills h2 {
+  margin-bottom: 8px;
+}
+
+.skills-sub {
   color: hsl(var(--foreground) / 0.6);
+  font-size: 15px;
+  max-width: 560px;
+  margin: 0 auto 36px;
 }
 
-.contact__inner .button {
-  margin-top: 16px;
+.skill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
 }
 
-/* =============================================================================
-   12. FOOTER
-   Four quiet columns, then the oversized wordmark, which is the back-to-top
-   control. It is cropped tight on purpose — the letterforms are the object.
-   ========================================================================== */
+.skill {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+  width: 80px;
+  transition: transform 0.25s ease;
+}
 
-.footer {
-  padding-top: var(--section-y);
-  border-top: 1px solid hsl(var(--border) / 0.6);
+.skill:hover {
+  transform: translateY(-4px);
+}
+
+/* These are flat black SVGs loaded through img tags, so CSS cannot recolour
+   the paths. Inverting the whole image turns them bone, which is the one
+   thing that works without swapping the files for inline SVG. */
+.skill img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: invert(1);
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
+}
+
+.skill:hover img {
+  opacity: 1;
+}
+
+.skill span {
+  font-size: 13px;
+  color: hsl(var(--foreground) / 0.6);
+  text-align: center;
+}
+
+/* ===== PROJECTS ===== */
+
+.projects-section {
+  max-width: 740px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.projects-sub {
+  color: hsl(var(--foreground) / 0.6);
+  font-size: 15px;
+  max-width: 560px;
+  margin: 0 auto 36px;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.project-card {
+  background: hsl(var(--surface));
+  border: 1px solid hsl(var(--line) / 0.6);
+  border-radius: 12px;
+  padding: 24px 28px;
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  border-color: hsl(var(--line));
+}
+
+.project-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.project-card p {
+  margin: 0;
+  color: hsl(var(--foreground) / 0.6);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ===== CONTACT ===== */
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  gap: 8px;
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: hsl(var(--foreground) / 0.7);
+}
+
+.contact-info li {
+  padding: 4px 0;
+}
+
+/* ===== FOOTER ===== */
+
+.site-footer {
+  padding: 70px 40px 40px;
+  border-top: 1px solid hsl(var(--line) / 0.6);
   overflow: hidden;
 }
 
-.footer__grid {
-  display: grid;
-  gap: 48px;
-  padding-bottom: 64px;
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1320px;
+  margin: 0 auto 48px;
 }
 
-.footer__tagline {
-  font-size: 1.125rem;
+.footer-tagline {
+  font-size: 20px;
   font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  max-width: 22ch;
+  letter-spacing: -1px;
+  max-width: 320px;
 }
 
-.footer__col {
+.footer-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-.footer__col .eyebrow {
+.footer-heading {
   margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: hsl(var(--foreground) / 0.5);
 }
 
-.footer__col a {
+.footer-col a {
   font-size: 14px;
-  color: hsl(var(--foreground) / 0.6);
-  transition: color 0.3s var(--ease-soft);
+  font-weight: 400;
+  color: hsl(var(--foreground) / 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.footer__col a:hover {
+.footer-col a:hover {
   color: hsl(var(--foreground));
 }
 
-.footer__legal {
-  padding: 24px 0;
-  border-top: 1px solid hsl(var(--border) / 0.6);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: hsl(var(--foreground) / 0.55);
+.footer-legal {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid hsl(var(--line) / 0.6);
+  font-size: 12px;
+  color: hsl(var(--foreground) / 0.5);
 }
 
-.footer__wordmark {
+/* Big back-to-top wordmark, the same idea as the KHAT redesign footer:
+   cropped tight so the letterforms themselves are the object. */
+.footer-wordmark {
   display: block;
-  font-size: clamp(3.5rem, 21vw, 18rem);
+  margin-top: 24px;
+  font-size: clamp(56px, 18vw, 200px);
   font-weight: 500;
-  letter-spacing: -0.06em;
-  line-height: 0.78;
+  letter-spacing: -6px;
+  line-height: 0.85;
+  text-align: center;
   color: hsl(var(--foreground) / 0.9);
-  transition: color 0.5s var(--ease-soft);
+  text-decoration: none;
+  transition: color 0.3s var(--ease);
 }
 
-.footer__wordmark:hover {
-  color: hsl(var(--primary));
+.footer-wordmark:hover {
+  color: hsl(var(--sand));
 }
 
-@media (min-width: 768px) {
-  .footer__grid {
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 32px;
-  }
-
-  .footer__tagline {
-    font-size: 1.375rem;
-  }
-}
-
-/* =============================================================================
-   13. SCROLL REVEAL
-   Opacity, blur and a short lift — no large movement. Elements are unobserved
-   after their first reveal (see scripts.js) so the page settles once read.
-   ========================================================================== */
+/* ===== SCROLL REVEAL ===== */
 
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  filter: blur(16px);
+  opacity: 0.001;
+  transform: translateY(20px);
+  filter: blur(4px);
   transition:
-    opacity 0.9s var(--ease-editorial),
-    transform 0.9s var(--ease-editorial),
-    filter 0.9s var(--ease-editorial);
+    opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    filter 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.reveal.is-visible {
+.reveal.visible {
   opacity: 1;
-  transform: none;
-  filter: blur(0);
+  transform: translateY(0);
+  filter: blur(0px);
 }
 
-/* Anything animated here is presentation only, so it is all safe to drop */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
+/* stagger children 150ms apart */
+.reveal-group.visible > *:nth-child(1) {
+  transition-delay: 0ms;
+}
+.reveal-group.visible > *:nth-child(2) {
+  transition-delay: 150ms;
+}
+.reveal-group.visible > *:nth-child(3) {
+  transition-delay: 300ms;
+}
+.reveal-group.visible > *:nth-child(4) {
+  transition-delay: 450ms;
 }
 
-/* =============================================================================
-   14. RESPONSIVE
-   768px is the only structural breakpoint (the grid rules above own it). What
-   is left is the phone-side trim.
-   ========================================================================== */
+/* ===== RESPONSIVE, tablet (768px) ===== */
 
-@media (max-width: 767px) {
-  /* The page is a single scroll, and the footer index repeats these links, so
-     the centre nav is dropped rather than hidden behind a menu button */
-  .nav__links {
+@media (max-width: 768px) {
+  .nav-inner {
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    justify-content: flex-end;
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  /* The contact link lives in the page itself, so the header drops it */
+  .nav-contact {
     display: none;
   }
 
-  .hero__content {
-    padding-bottom: 72px;
+  .hero h1 {
+    font-size: 64px;
+    letter-spacing: -2px;
   }
 
-  .statement:nth-child(even) {
-    margin-left: 0;
+  .hero p {
+    font-size: 16px;
+    padding: 0 10px;
   }
 
-  .section__head,
-  .boxing__head {
-    margin-bottom: 40px;
+  section {
+    padding: 50px 24px 80px;
+  }
+
+  .boxing-info {
+    padding: 24px 28px;
+    margin: 20px 16px;
+    width: auto;
+  }
+
+  .skill-grid {
+    gap: 24px;
+  }
+
+  .project-card {
+    padding: 20px;
+  }
+
+  .site-footer {
+    padding: 50px 24px 32px;
+  }
+
+  .footer-columns {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+
+/* ===== RESPONSIVE, phone (480px) ===== */
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 50px 20px 80px;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    padding: 0 4px;
+  }
+
+  section {
+    padding: 40px 16px 60px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .boxing-info {
+    padding: 20px 20px;
+    margin: 12px 8px;
+  }
+
+  .skill-grid {
+    gap: 16px;
+  }
+
+  .skill {
+    padding: 8px 12px;
+    width: 64px;
+  }
+
+  .project-card {
+    padding: 16px;
+  }
+
+  .footer-wordmark {
+    letter-spacing: -3px;
   }
 }

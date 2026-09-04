@@ -1,77 +1,53 @@
-/* =============================================================================
-   Dhairya Saluja — portfolio
+let projects = [
+  "Weyn",
+  "Portfolio",
+  "Weather App",
+  "This website",
+  "Small Websites",
+];
+for (let i = 0; i < projects.length; i++) {
+  console.log(projects[i]);
+}
+const lenis = new Lenis();
 
-   Three small behaviours, all of them optional: smooth scroll, scroll reveals,
-   and a nav that gets out of the way. Nothing here is required to read the
-   page — if this file fails to load, the CSS still renders everything visible.
-   ========================================================================== */
-
-// Anyone who has asked their OS to reduce motion gets none of this.
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-/* =============================================================================
-   SMOOTH SCROLL
-   Lenis comes from a CDN, so guard against it being blocked or offline —
-   without it the browser falls back to `scroll-behavior: smooth` in the CSS.
-   ========================================================================== */
-
-if (!prefersReducedMotion && typeof Lenis === "function") {
-  const lenis = new Lenis();
-
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
+function raf(time) {
+  lenis.raf(time);
   requestAnimationFrame(raf);
 }
 
-/* =============================================================================
-   SCROLL REVEAL
-   Elements marked .reveal fade, unblur and lift into place once a fifth of
-   them is on screen. Each one is unobserved after it fires so scrolling back
-   up does not replay the animation — the page should settle after one read.
-   ========================================================================== */
+requestAnimationFrame(raf);
 
-const revealTargets = document.querySelectorAll(".reveal");
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  },
+  { threshold: 0.15 },
+);
 
-if (!prefersReducedMotion && "IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
+document
+  .querySelectorAll(".reveal, .reveal-group")
+  .forEach((el) => observer.observe(el));
 
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.2 },
-  );
+/* ===== NAV BACKGROUND =====
 
-  revealTargets.forEach((el) => revealObserver.observe(el));
-} else {
-  // No observer support: show everything rather than leave it at opacity 0.
-  revealTargets.forEach((el) => el.classList.add("is-visible"));
-}
-
-/* =============================================================================
-   NAV HIDE ON SCROLL
-   Hides on the way down, returns on the way up. The 80px offset stops it from
-   flickering during the tiny scrolls that happen while the page is settling.
-   ========================================================================== */
+   The nav sits over the hero photo with no background of its own, and gains
+   one once you have scrolled past the top. Lenis keeps window.scrollY in
+   sync, so reading it here works the same as it would without smooth scroll.
+   40px is far enough down that a phone address bar settling on load does not
+   flip it on its own. */
 
 const nav = document.getElementById("nav");
-const HIDE_AFTER = 80;
-let lastScrollY = window.scrollY;
+const SOLID_AFTER = 40;
 
-window.addEventListener(
-  "scroll",
-  () => {
-    const currentScrollY = window.scrollY;
-    const scrollingDown = currentScrollY > lastScrollY;
+function syncNav() {
+  nav.classList.toggle("scrolled", window.scrollY > SOLID_AFTER);
+}
 
-    nav.classList.toggle("nav--hidden", scrollingDown && currentScrollY > HIDE_AFTER);
-    lastScrollY = currentScrollY;
-  },
-  { passive: true },
-);
+window.addEventListener("scroll", syncNav, { passive: true });
+
+// Run once on load, since a reload can restore a scrolled position.
+syncNav();
