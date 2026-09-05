@@ -69,7 +69,7 @@ p {
 }
 
 section {
-  padding: 70px 40px 120px;
+  padding: clamp(70px, 7vw, 120px) clamp(40px, 7vw, 120px) clamp(120px, 10vw, 180px);
   border-top: 1px solid hsl(var(--line) / 0.6);
   text-align: center;
 }
@@ -196,7 +196,7 @@ section {
 .hero {
   position: relative;
   min-height: 100svh;
-  padding: 70px 40px 120px;
+  padding: 70px clamp(40px, 7vw, 120px) 120px;
   animation: fadeInUp 0.4s ease-in-out;
   display: flex;
   align-items: center;
@@ -244,7 +244,7 @@ section {
 
 .hero h1 {
   margin: 0 0 16px;
-  font-size: 100px;
+  font-size: clamp(100px, 8vw, 168px);
   line-height: 1;
   letter-spacing: -4px;
 }
@@ -252,7 +252,7 @@ section {
 .hero p {
   font-size: 18px;
   color: hsl(var(--foreground) / 0.85);
-  max-width: 500px;
+  max-width: 620px;
   margin: 0 auto;
 }
 
@@ -263,7 +263,7 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  max-width: 600px;
+  max-width: 900px;
   margin: 20px auto;
   background-color: hsl(var(--surface));
   border: 1px solid hsl(var(--line) / 0.6);
@@ -282,7 +282,7 @@ section {
 }
 
 .boxing-text {
-  max-width: 620px;
+  max-width: 760px;
   margin: 0 auto 24px;
 }
 
@@ -307,7 +307,7 @@ section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  gap: clamp(40px, 5vw, 80px);
 }
 
 .skill {
@@ -354,7 +354,7 @@ section {
 /* ===== PROJECTS ===== */
 
 .projects-section {
-  max-width: 740px;
+  max-width: 1180px;
   margin: 0 auto;
   text-align: center;
 }
@@ -367,10 +367,9 @@ section {
 }
 
 .project-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
-  align-items: center;
 }
 
 .project-card {
@@ -379,7 +378,7 @@ section {
   border-radius: 12px;
   padding: 24px 28px;
   width: 100%;
-  max-width: 560px;
+  max-width: none;
   text-align: center;
   transition:
     transform 0.3s var(--ease),
@@ -583,6 +582,10 @@ section {
 
   .skill-grid {
     gap: 24px;
+  }
+
+  .project-list {
+    grid-template-columns: 1fr;
   }
 
   .project-card {
