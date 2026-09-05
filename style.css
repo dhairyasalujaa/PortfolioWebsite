@@ -105,6 +105,17 @@ section {
   width: 100%;
 }
 
+/*Selection highlight is a warm bone on black, not the default blue. This is a
+   subtle but important part of the brand. */
+::selection {
+  background-color: hsl(var(--foreground) / 0.85);
+  color: hsl(var(--background));
+}
+::mozilla-selection {
+  background-color: hsl(var(--foreground) / 0.85);
+  color: hsl(var(--background));
+}
+
 /* ===== NAV =====
 
    Fixed bar across the top. Transparent while the hero photo is behind it,
