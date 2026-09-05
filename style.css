@@ -337,6 +337,10 @@ section {
   transition: opacity 0.25s ease;
 }
 
+.skill img[src*="tailwindcss"] {
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
 .skill:hover img {
   opacity: 1;
 }
