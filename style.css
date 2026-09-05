@@ -20,7 +20,16 @@
 html {
   /* Anchored sections would otherwise land underneath the fixed nav */
   scroll-padding-top: var(--nav-height);
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 body {

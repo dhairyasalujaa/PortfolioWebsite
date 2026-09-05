@@ -5,6 +5,16 @@ let projects = [
   "This website",
   "Small Websites",
 ];
+
+const lenis = new Lenis({ anchors: true });
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
 for (let i = 0; i < projects.length; i++) {
   console.log(projects[i]);
 }
