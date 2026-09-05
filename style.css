@@ -124,9 +124,8 @@ section {
 
 .nav.scrolled {
   background-color: hsl(var(--background) / 0.85);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom-color: hsl(var(--line) / 0.6);
 }
 
 .nav-inner {
