@@ -537,6 +537,164 @@ section {
   transition-delay: 450ms;
 }
 
+/* ===== RESPONSIVE, large desktop (1200px) ===== */
+
+@media (min-width: 1200px) {
+  :root {
+    --nav-height: 80px;
+  }
+
+  h2 {
+    font-size: 48px;
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 1.65;
+  }
+
+  section {
+    padding: 140px 8vw 220px;
+  }
+
+  .page {
+    padding-top: 180px;
+  }
+
+  .nav-inner {
+    max-width: 1560px;
+    padding: 0 56px;
+  }
+
+  .nav-logo {
+    font-size: 18px;
+  }
+
+  .nav-links {
+    gap: 44px;
+  }
+
+  .nav-links a,
+  .nav-contact {
+    font-size: 17px;
+  }
+
+  .hero {
+    padding: 90px 8vw 160px;
+  }
+
+  .hero h1 {
+    font-size: 180px;
+    letter-spacing: -5px;
+  }
+
+  .hero p {
+    max-width: 760px;
+    font-size: 22px;
+  }
+
+  .boxing-info {
+    max-width: 1120px;
+    gap: 12px;
+    padding: 48px 64px;
+  }
+
+  .boxing-text {
+    max-width: 900px;
+    margin-bottom: 32px;
+  }
+
+  .skills-sub,
+  .projects-sub {
+    max-width: 680px;
+    margin-bottom: 52px;
+    font-size: 19px;
+  }
+
+  .skill-grid {
+    gap: 64px 96px;
+  }
+
+  .skill {
+    width: 120px;
+    padding: 16px 24px;
+    gap: 14px;
+  }
+
+  .skill img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .skill span {
+    font-size: 17px;
+  }
+
+  .projects-section {
+    max-width: 1560px;
+  }
+
+  .project-list {
+    gap: 24px;
+  }
+
+  .project-card {
+    padding: 36px 40px;
+    border-radius: 14px;
+  }
+
+  .project-card h3 {
+    margin-bottom: 12px;
+    font-size: 24px;
+  }
+
+  .project-card p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .contact-info {
+    gap: 12px;
+  }
+
+  .contact-info li {
+    padding: 8px 0;
+  }
+
+  .site-footer {
+    padding: 100px 56px 56px;
+  }
+
+  .footer-columns {
+    max-width: 1560px;
+    gap: 64px;
+    margin-bottom: 72px;
+  }
+
+  .footer-tagline {
+    font-size: 26px;
+    max-width: 400px;
+  }
+
+  .footer-col {
+    gap: 14px;
+  }
+
+  .footer-heading {
+    font-size: 14px;
+  }
+
+  .footer-col a {
+    font-size: 17px;
+  }
+
+  .footer-legal {
+    max-width: 1560px;
+    padding-top: 32px;
+    font-size: 14px;
+  }
+}
+
 /* ===== RESPONSIVE, tablet (768px) ===== */
 
 @media (max-width: 768px) {
