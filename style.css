@@ -69,7 +69,8 @@ p {
 }
 
 section {
-  padding: clamp(70px, 7vw, 120px) clamp(40px, 7vw, 120px) clamp(120px, 10vw, 180px);
+  padding: clamp(70px, 7vw, 120px) clamp(40px, 7vw, 120px)
+    clamp(120px, 10vw, 180px);
   border-top: 1px solid hsl(var(--line) / 0.6);
   text-align: center;
 }
@@ -185,6 +186,8 @@ section {
 .nav-contact:hover {
   color: hsl(var(--foreground));
   border-color: hsl(var(--line));
+  transform: translateY(-1px);
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-contact {

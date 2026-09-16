@@ -1,0 +1,86 @@
+# Coding conventions — Dhairya
+
+Match this style whenever writing or editing code in this workspace. Treat this
+file as your persistent memory of preferences — if the user corrects you or
+confirms a pattern works, note it here (append, don't rewrite wholesale) the
+same way a human teammate would keep notes across sessions.
+
+## Comments
+Comments carry reasoning, not mechanics — never restate what the code does.
+Non-obvious files open with a short block comment saying what the file is for
+and *why* it exists instead of an obvious alternative. Reference sibling files,
+prior bugs, or audit findings by name when relevant (e.g. "must match
+server/app.js's CANCEL_REASONS exactly"). Em dashes and occasional
+**bold lead-ins** inside a comment block are fine. In C# use long
+`/// <summary>` blocks with `**Why this is not just X.**`-style headers and
+`<see cref=""/>` links.
+
+## Formatting
+- TS/JS: double quotes, semicolons, 2-space indent, trailing commas in
+  multi-line literals, prettier-default width.
+- C#: 4-space indent.
+- Short guard clauses on one line: `if (!account) { setFollowing(null); return; }`
+- `function` declarations for top-level/handlers; arrow functions for callbacks.
+- `export default function Component(...)` for React components with inline
+  prop types; named exports for utilities.
+- TypeScript `strict: true`, ESM everywhere (`"type": "module"`, `.js`
+  extensions in relative imports).
+
+## Structure
+- Small named shared primitives instead of repetition (e.g. `MotionButton`,
+  `usePressable`, `api.*`).
+- One module per concern; flat `server/*.js` or `packages/*/src/` layout.
+- Const tables at the top of a file for classification (e.g. `TOOL_RISK`,
+  `CATEGORY_KEYS`) rather than scattered conditionals.
+- Zod at the request boundary.
+- Classes only for stateful services; everything else is functions.
+
+## Behavior habits
+- Optimistic UI with explicit rollback of previous values on failure.
+- `let cancelled = false` cleanup in effects.
+- `.catch(() => {})` on fire-and-forget reads.
+- Fail-safe defaults (e.g. unknown tool ⇒ `"confirm"`).
+- `process.env.X || process.env.Y || default` for config, with a comment
+  naming who injects it.
+- Tests: built-in `node:test` + `node:assert/strict`, named
+  `"unit: what it does"`, with a factory like `const validDraft = () => ({...})`.
+
+## Default stack (unless the project says otherwise)
+- **Web app:** React 18 + Vite + TypeScript, react-router-dom, plain CSS with
+  custom-property tokens (no Tailwind, no CSS-in-JS), Geist / Inter Tight.
+- **Motion:** `motion` (Framer Motion v12), GSAP + `@gsap/react`, Lenis for
+  smooth scroll, `ogl`/`three` for WebGL flourishes.
+- **Backend:** Express 4 (ESM) + Prisma 7 + Postgres (`@prisma/adapter-pg`),
+  Zod validation, helmet + cors + express-rate-limit, Clerk for auth,
+  Sentry + PostHog.
+- **Node tooling:** npm workspaces monorepo, `tsconfig.base.json`
+  (ES2022 / NodeNext / strict), `concurrently` for dev, no test framework
+  beyond built-in `node:test`. Capacitor for iOS wrapping.
+- **Agents:** MCP SDK (`@modelcontextprotocol/sdk`) with stdio transports, a
+  tool registry + risk-tiered permission gate.
+- **Games:** Unity 6, C# under a project-specific namespace, Input System,
+  NavMesh, `[MenuItem(".../...")]` editor tools for generation and audits.
+- Repos carry a `CLAUDE.md`/`AGENTS.md` plus handoff/plan markdown docs at root.
+
+## Design language (for any UI work)
+- Dark-first, near-monochrome. One neutral family; never pure `#000`/`#fff`.
+  Hue reserved for photography, category accents, and error/danger only.
+- Tokens over literals: CSS custom properties in `:root`, a named type ramp,
+  a strict 4px spacing scale, a shared easing curve. Never hardcode a value a
+  token covers.
+- Depth via surface tone + soft high-blur shadow, not hard borders. If a
+  shadow is immediately noticeable, it's too strong.
+- Full interactive state sets (default/hover/active/focus/disabled/loading;
+  inputs also error/success), visible selection states, immediate feedback.
+- Motion is subtle and always reduced-motion-aware, routed through shared
+  primitives rather than one-off inline values.
+- Reference points: Uber/Apple restraint. Text never sits on a bare image
+  without a gradient scrim.
+
+## Working style
+- Don't add abstractions, error handling, or validation beyond what the task
+  needs. No speculative future-proofing.
+- Before adding a file, read a neighbouring file and mirror its header
+  comment depth and structure.
+- When a request conflicts with the design language or conventions above,
+  say so rather than silently breaking them.
