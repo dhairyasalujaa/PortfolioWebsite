@@ -126,11 +126,7 @@ section {
   color: hsl(var(--background));
 }
 
-/* ===== NAV =====
-
-   Fixed bar across the top. Transparent while the hero photo is behind it,
-   then it picks up a blurred background and a hairline once you scroll. */
-
+/* ===== NAV ===== */
 .nav {
   position: fixed;
   top: 0;
