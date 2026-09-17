@@ -137,6 +137,7 @@ section {
   transition:
     background-color 0.3s var(--ease),
     border-color 0.3s var(--ease);
+  transition: all 0.3s ease-in-out;
 }
 
 .nav.scrolled {
@@ -183,7 +184,6 @@ section {
   color: hsl(var(--foreground));
   border-color: hsl(var(--line));
   transform: translateY(-1px);
-  transition: all 0.3s ease-in-out;
 }
 
 .nav-contact {
