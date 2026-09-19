@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Thirty-six framework-free website blocks in four distinct visual styles." />
+    <title>Block/36 — Website section library</title>
+    <link rel="stylesheet" href="catalog.css" />
+    <script src="block-data.js" defer></script>
+    <script src="catalog.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#library">Skip to blocks</a>
+    <header class="catalog-header">
+      <a class="catalog-logo" href="index.html"><span>B/</span>36</a>
+      <p>Framework-free sections for people who like to understand their code.</p>
+      <a href="#how-to-use">How to use</a>
+    </header>
+
+    <main>
+      <section class="catalog-hero">
+        <div>
+          <p class="catalog-hero__edition">First collection · 2026</p>
+          <h1>Good sections.<br />Plain code.</h1>
+        </div>
+        <div class="catalog-hero__aside">
+          <p>Build faster without inheriting a framework, a design cliché, or code you cannot explain.</p>
+          <dl>
+            <div><dt>Blocks</dt><dd>36</dd></div>
+            <div><dt>Styles</dt><dd>4</dd></div>
+            <div><dt>Dependencies</dt><dd>0</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="style-index" aria-labelledby="style-title">
+        <div class="section-intro">
+          <h2 id="style-title">Four ways to start</h2>
+          <p>Each family has its own layout grammar, not just a different coat of paint.</p>
+        </div>
+        <div class="style-list">
+          <article class="style-row style-row--studio"><span class="style-swatch"></span><h3>Minimal studio</h3><p>Precise, cool, editorial</p><a href="demos/studio.html">View assembled demo</a></article>
+          <article class="style-row style-row--brutal"><span class="style-swatch"></span><h3>Bold brutalist</h3><p>Loud, direct, poster-led</p><a href="demos/brutal.html">View assembled demo</a></article>
+          <article class="style-row style-row--product"><span class="style-swatch"></span><h3>Soft product</h3><p>Friendly, useful, calm</p><a href="demos/product.html">View assembled demo</a></article>
+          <article class="style-row style-row--editorial"><span class="style-swatch"></span><h3>Dark editorial</h3><p>Cinematic, literary, measured</p><a href="demos/editorial.html">View assembled demo</a></article>
+        </div>
+      </section>
+
+      <section class="library" id="library" aria-labelledby="library-title">
+        <div class="library__head">
+          <div><p>Browse the collection</p><h2 id="library-title">Find your next section.</h2></div>
+          <p id="result-count" aria-live="polite">36 blocks</p>
+        </div>
+
+        <div class="library-tools">
+          <div class="filter-list" aria-label="Filter by style">
+            <button type="button" data-style-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-style-filter="studio" aria-pressed="false">Studio</button>
+            <button type="button" data-style-filter="brutal" aria-pressed="false">Brutal</button>
+            <button type="button" data-style-filter="product" aria-pressed="false">Product</button>
+            <button type="button" data-style-filter="editorial" aria-pressed="false">Editorial</button>
+            <button type="button" data-style-filter="specialty" aria-pressed="false">Specialty</button>
+          </div>
+          <label class="search-field" for="block-search"><span>Search</span><input id="block-search" type="search" placeholder="Hero, pricing, footer…" autocomplete="off" /></label>
+        </div>
+
+        <div class="block-grid" id="block-grid"></div>
+        <div class="empty-state" id="empty-state" hidden><h3>No blocks found</h3><p>Try another style or a broader search term.</p></div>
+      </section>
+
+      <section class="usage" id="how-to-use">
+        <div><p>Keep it simple</p><h2>Copy a folder.<br />Make it yours.</h2></div>
+        <ol>
+          <li><span>1</span><div><h3>Choose a block</h3><p>Open the preview and check its own README.</p></div></li>
+          <li><span>2</span><div><h3>Copy the folder</h3><p>HTML, CSS, and the optional script stay together.</p></div></li>
+          <li><span>3</span><div><h3>Edit the markers</h3><p>Replace the content and theme values clearly labelled in the code.</p></div></li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="catalog-footer"><p>Block/36</p><p>HTML · CSS · a little JavaScript</p><a href="#">Back to top</a></footer>
+  </body>
+</html>

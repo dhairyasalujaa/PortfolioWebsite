@@ -17,4 +17,19 @@ assert.equal(
   "Root classes must be unique",
 );
 
-console.log("PASS: 36 unique block records");
+const catalogPath = path.join(root, "catalog.js");
+assert.ok(fs.existsSync(catalogPath), "Missing catalog.js");
+
+const { filterBlocks } = require(catalogPath);
+const studioResults = filterBlocks(BLOCKS, "studio", "");
+
+assert.equal(studioResults.length, 7);
+assert.ok(studioResults.every((block) => block.style === "studio"));
+assert.deepEqual(
+  filterBlocks(BLOCKS, "all", "pricing").map((block) => block.id),
+  ["29-studio-pricing", "30-editorial-pricing"],
+);
+assert.equal(filterBlocks(BLOCKS, "editorial", "navigation")[0].id, "22-editorial-navigation");
+assert.equal(filterBlocks(BLOCKS, "studio", "accordion").length, 0);
+
+console.log("PASS: metadata and catalogue filtering");
