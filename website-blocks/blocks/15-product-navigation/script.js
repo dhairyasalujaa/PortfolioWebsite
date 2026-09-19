@@ -1,0 +1,3 @@
+function setProductMenu(open, controls){controls.toggle.setAttribute("aria-expanded",String(open));controls.nav.setAttribute("aria-hidden",String(!open));controls.nav.classList.toggle("is-open",open)}
+if(typeof document!=="undefined"){const toggle=document.querySelector(".product-nav__toggle");const nav=document.querySelector(".product-nav__links");if(toggle&&nav){toggle.addEventListener("click",()=>setProductMenu(toggle.getAttribute("aria-expanded")!=="true",{toggle,nav}));matchMedia("(min-width: 721px)").addEventListener("change",event=>{if(event.matches)setProductMenu(false,{toggle,nav})})}}
+if(typeof module!=="undefined")module.exports={setProductMenu};

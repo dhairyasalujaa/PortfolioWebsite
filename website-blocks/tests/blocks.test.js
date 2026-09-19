@@ -47,6 +47,15 @@ const implementedIds = [
   "12-brutal-social-proof",
   "13-brutal-contact-cta",
   "14-brutal-footer",
+  "15-product-navigation",
+  "16-product-hero",
+  "17-product-projects",
+  "18-product-features",
+  "19-product-social-proof",
+  "20-product-contact-cta",
+  "21-product-footer",
+  "31-product-faq",
+  "35-product-newsletter",
 ];
 
 function validateBlock(block) {
@@ -119,5 +128,33 @@ assert.ok(brutalNav.classes.has("is-open"));
 setBrutalMenu(false, { toggle: brutalToggle, nav: brutalNav });
 assert.equal(brutalNav.attributes.get("aria-hidden"), "true");
 assert.ok(!brutalNav.classes.has("is-open"));
+
+const productMenuPath = path.join(root, "blocks", "15-product-navigation", "script.js");
+assert.ok(fs.existsSync(productMenuPath), "Product navigation is missing script.js");
+const { setProductMenu } = require(productMenuPath);
+const productToggle = fakeElement();
+const productNav = fakeElement();
+setProductMenu(true, { toggle: productToggle, nav: productNav });
+assert.equal(productToggle.attributes.get("aria-expanded"), "true");
+assert.equal(productNav.attributes.get("aria-hidden"), "false");
+assert.ok(productNav.classes.has("is-open"));
+setProductMenu(false, { toggle: productToggle, nav: productNav });
+assert.equal(productNav.attributes.get("aria-hidden"), "true");
+assert.ok(!productNav.classes.has("is-open"));
+
+const productFaqPath = path.join(root, "blocks", "31-product-faq", "script.js");
+assert.ok(fs.existsSync(productFaqPath), "Product FAQ is missing script.js");
+const { setFaqItem } = require(productFaqPath);
+const faqButton = fakeElement();
+const faqPanel = fakeElement();
+faqPanel.hidden = false;
+setFaqItem(faqButton, faqPanel, false);
+assert.equal(faqButton.attributes.get("aria-expanded"), "false");
+assert.equal(faqPanel.hidden, true);
+assert.ok(!faqButton.classes.has("is-open"));
+setFaqItem(faqButton, faqPanel, true);
+assert.equal(faqButton.attributes.get("aria-expanded"), "true");
+assert.equal(faqPanel.hidden, false);
+assert.ok(faqButton.classes.has("is-open"));
 
 console.log(`PASS: catalogue behavior and ${implementedIds.length} block contracts`);
