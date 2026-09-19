@@ -40,6 +40,13 @@ const implementedIds = [
   "05-studio-social-proof",
   "06-studio-contact-cta",
   "07-studio-footer",
+  "08-brutal-navigation",
+  "09-brutal-hero",
+  "10-brutal-projects",
+  "11-brutal-features",
+  "12-brutal-social-proof",
+  "13-brutal-contact-cta",
+  "14-brutal-footer",
 ];
 
 function validateBlock(block) {
@@ -99,5 +106,18 @@ setStudioMenu(false, { toggle: studioToggle, nav: studioNav });
 assert.equal(studioToggle.attributes.get("aria-expanded"), "false");
 assert.equal(studioNav.attributes.get("aria-hidden"), "true");
 assert.ok(!studioNav.classes.has("is-open"));
+
+const brutalMenuPath = path.join(root, "blocks", "08-brutal-navigation", "script.js");
+assert.ok(fs.existsSync(brutalMenuPath), "Brutal navigation is missing script.js");
+const { setBrutalMenu } = require(brutalMenuPath);
+const brutalToggle = fakeElement();
+const brutalNav = fakeElement();
+setBrutalMenu(true, { toggle: brutalToggle, nav: brutalNav });
+assert.equal(brutalToggle.attributes.get("aria-expanded"), "true");
+assert.equal(brutalNav.attributes.get("aria-hidden"), "false");
+assert.ok(brutalNav.classes.has("is-open"));
+setBrutalMenu(false, { toggle: brutalToggle, nav: brutalNav });
+assert.equal(brutalNav.attributes.get("aria-hidden"), "true");
+assert.ok(!brutalNav.classes.has("is-open"));
 
 console.log(`PASS: catalogue behavior and ${implementedIds.length} block contracts`);
