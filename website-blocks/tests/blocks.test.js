@@ -32,4 +32,72 @@ assert.deepEqual(
 assert.equal(filterBlocks(BLOCKS, "editorial", "navigation")[0].id, "22-editorial-navigation");
 assert.equal(filterBlocks(BLOCKS, "studio", "accordion").length, 0);
 
-console.log("PASS: metadata and catalogue filtering");
+const implementedIds = [
+  "01-studio-navigation",
+  "02-studio-hero",
+  "03-studio-projects",
+  "04-studio-features",
+  "05-studio-social-proof",
+  "06-studio-contact-cta",
+  "07-studio-footer",
+];
+
+function validateBlock(block) {
+  const folder = path.join(root, "blocks", block.id);
+
+  for (const file of ["index.html", "style.css", "README.md"]) {
+    const filePath = path.join(folder, file);
+    assert.ok(fs.existsSync(filePath), `${block.id} is missing ${file}`);
+    assert.ok(fs.statSync(filePath).size > 100, `${block.id}/${file} is too small`);
+  }
+
+  const html = fs.readFileSync(path.join(folder, "index.html"), "utf8");
+  const css = fs.readFileSync(path.join(folder, "style.css"), "utf8");
+  const guide = fs.readFileSync(path.join(folder, "README.md"), "utf8");
+
+  assert.match(html, /name="viewport"/);
+  assert.ok(html.includes(`class="${block.rootClass}`));
+  assert.match(html, /<!-- EDIT:/);
+  assert.doesNotMatch(html, /(href|src)="(\.\.\/|https?:\/\/)/);
+  assert.match(css, /\/\* EDIT: theme \*\//);
+  assert.ok(css.includes(`.${block.rootClass}`));
+  assert.match(css, /:focus-visible/);
+  assert.match(css, /@media\s*\(max-width:\s*720px\)/);
+
+  for (const heading of ["Use it for", "Files", "Edit first", "Behavior", "Accessibility"]) {
+    assert.ok(guide.includes(`## ${heading}`), `${block.id} README is missing ${heading}`);
+  }
+}
+
+for (const id of implementedIds) {
+  validateBlock(BLOCKS.find((block) => block.id === id));
+}
+
+const studioMenuPath = path.join(root, "blocks", "01-studio-navigation", "script.js");
+assert.ok(fs.existsSync(studioMenuPath), "Studio navigation is missing script.js");
+
+const { setStudioMenu } = require(studioMenuPath);
+
+function fakeElement() {
+  const attributes = new Map();
+  const classes = new Set();
+  return {
+    attributes,
+    classes,
+    classList: { toggle(name, force) { if (force) classes.add(name); else classes.delete(name); } },
+    setAttribute(name, value) { attributes.set(name, String(value)); },
+  };
+}
+
+const studioToggle = fakeElement();
+const studioNav = fakeElement();
+setStudioMenu(true, { toggle: studioToggle, nav: studioNav });
+assert.equal(studioToggle.attributes.get("aria-expanded"), "true");
+assert.equal(studioNav.attributes.get("aria-hidden"), "false");
+assert.ok(studioNav.classes.has("is-open"));
+setStudioMenu(false, { toggle: studioToggle, nav: studioNav });
+assert.equal(studioToggle.attributes.get("aria-expanded"), "false");
+assert.equal(studioNav.attributes.get("aria-hidden"), "true");
+assert.ok(!studioNav.classes.has("is-open"));
+
+console.log(`PASS: catalogue behavior and ${implementedIds.length} block contracts`);

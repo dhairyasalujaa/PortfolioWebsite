@@ -1,0 +1,22 @@
+/* EDIT: theme */
+:root { --paper:#eef1f4; --ink:#11151c; --accent:#3157ff; --steel:#a7b0bd; --line:#c7ced7; --white:#ffffff; --muted:#626b78; }
+*,*::before,*::after { box-sizing:border-box; }
+body { margin:0; color:var(--ink); background:var(--paper); font-family:Arial,Helvetica,sans-serif; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,p,blockquote { margin:0; }
+a { color:inherit; }
+button { font:inherit; }
+.studio-hero :focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+.studio-hero { display:grid; grid-template-columns:repeat(12,1fr); gap:1.5rem; width:min(100% - 3rem, 78rem); min-height:85svh; margin:auto; padding:5rem 0; align-items:center; }
+.studio-hero__copy { grid-column:1 / span 7; }
+.studio-hero__place { max-width:24rem; padding-bottom:.75rem; border-bottom:1px solid var(--ink); font-size:.9rem; }
+.studio-hero h1 { max-width:8ch; margin:2rem 0; font-size:clamp(4.2rem,9vw,8.8rem); line-height:.84; letter-spacing:-.075em; }
+.studio-hero__intro { max-width:35rem; color:var(--muted); font-size:1.2rem; }
+.studio-hero__actions { display:flex; gap:1rem; margin-top:2rem; }
+.studio-hero__actions a { min-height:46px; display:inline-flex; align-items:center; padding:.6rem .9rem; border:1px solid var(--ink); text-decoration:none; }
+.studio-hero__actions a:first-child { color:white; border-color:var(--accent); background:var(--accent); }
+.studio-hero__art { position:relative; grid-column:9 / -1; aspect-ratio:4/5; background:var(--white); overflow:hidden; }
+.studio-hero__art span { position:absolute; background:var(--accent); }
+.studio-hero__art span:nth-child(1){ inset:8% 11% 42% 17%; } .studio-hero__art span:nth-child(2){ right:10%; bottom:9%; width:48%; height:45%; border-radius:50%; } .studio-hero__art span:nth-child(3){ bottom:14%; left:8%; width:28%; height:28%; background:var(--ink); transform:rotate(20deg); }
+@media (max-width:720px) { .studio-hero { grid-template-columns:1fr; width:min(100% - 2rem,78rem); padding:3.5rem 0; } .studio-hero__copy,.studio-hero__art { grid-column:1; } .studio-hero__art { width:85%; margin-left:auto; } .studio-hero h1 { font-size:clamp(3.8rem,18vw,6rem); } .studio-hero__actions { align-items:flex-start; flex-direction:column; } }
+@media (prefers-reduced-motion:reduce) { .studio-hero *, .studio-hero *::before, .studio-hero *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+
