@@ -1,1 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Dhairya Saluja is a student developer in Muscat, building projects while learning how the web works."
+    />
+    <title>Dhairya Saluja — Student developer</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="scripts.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="wordmark" href="index.html" aria-label="Dhairya Saluja, home">
+          <span>DS</span>
+          <span class="wordmark__name">Dhairya Saluja</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span class="nav-toggle__label">Menu</span>
+          <span class="nav-toggle__mark" aria-hidden="true"></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="#work" data-nav-link="work">Work</a>
+          <a href="#toolkit" data-nav-link="toolkit">Toolkit</a>
+          <a href="#boxing" data-nav-link="boxing">Boxing</a>
+          <a class="nav-contact" href="#contact" data-nav-link="contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero page-shell" aria-labelledby="hero-title">
+        <div class="hero__intro" data-reveal>
+          <p class="hero__location">Muscat, Oman <span aria-hidden="true">↘</span></p>
+          <h1 id="hero-title">I build things while learning how they work.</h1>
+          <p class="hero__lede">
+            I’m Dhairya, a student developer turning ideas into clear, useful
+            websites with HTML, CSS, and a growing knowledge of JavaScript.
+          </p>
+          <a class="button button--primary" href="#work">See what I’m building</a>
+        </div>
+
+        <div class="hero__visual" data-reveal>
+          <figure class="portrait-frame">
+            <img
+              src="images/mirror.jpg"
+              width="1080"
+              height="1920"
+              alt="Dhairya taking a mirror photo"
+              fetchpriority="high"
+            />
+            <figcaption>Developer in progress</figcaption>
+          </figure>
+          <aside class="status-card" aria-label="Current status">
+            <span class="status-card__dot" aria-hidden="true"></span>
+            <p><strong>Currently</strong> improving my JavaScript and building a sharper portfolio.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="work-section page-shell" id="work" data-section data-reveal>
+        <div class="section-heading">
+          <h2>Selected work</h2>
+          <p>Small projects, honest progress, and the lessons behind both.</p>
+        </div>
+
+        <div class="project-list">
+          <article class="project-row">
+            <div class="project-row__title">
+              <h3>Weyn</h3>
+              <span class="project-status">Paused</span>
+            </div>
+            <p>
+              An idea for discovering events and booking tickets in Muscat.
+              Planning it taught me how a useful product starts with a real local problem.
+            </p>
+            <ul class="tag-list" aria-label="Tools used for Weyn">
+              <li>Figma</li>
+              <li>Product thinking</li>
+            </ul>
+          </article>
+
+          <article class="project-row project-row--featured">
+            <div class="project-row__title">
+              <h3>This portfolio</h3>
+              <span class="project-status">In progress</span>
+            </div>
+            <p>
+              A personal site designed and coded from scratch. It is where I
+              practise responsive layouts, accessibility, and purposeful motion.
+            </p>
+            <ul class="tag-list" aria-label="Tools used for this portfolio">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+          </article>
+
+          <article class="project-row">
+            <div class="project-row__title">
+              <h3>TodoList</h3>
+              <span class="project-status">Complete</span>
+            </div>
+            <p>
+              A focused JavaScript exercise for creating, completing, and
+              removing tasks while learning how state changes the interface.
+            </p>
+            <ul class="tag-list" aria-label="Tools used for TodoList">
+              <li>JavaScript</li>
+              <li>DOM</li>
+            </ul>
+          </article>
+        </div>
+
+        <a class="text-link" href="projects.html">Read the project notes</a>
+      </section>
+
+      <section class="toolkit-section" id="toolkit" data-section data-reveal>
+        <div class="page-shell toolkit-grid">
+          <div class="section-heading section-heading--light">
+            <h2>My toolkit</h2>
+            <p>I keep the stack simple so I can understand what every line is doing.</p>
+          </div>
+
+          <div class="tool-group">
+            <h3>Core</h3>
+            <p>HTML, CSS, JavaScript</p>
+          </div>
+          <div class="tool-group">
+            <h3>Exploring</h3>
+            <p>Tailwind CSS, Figma</p>
+          </div>
+          <div class="tool-group">
+            <h3>Workflow</h3>
+            <p>Git, GitHub, Vercel</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="boxing-section" id="boxing" data-section data-reveal>
+        <div class="page-shell boxing-grid">
+          <figure class="boxing-photo">
+            <img
+              src="images/boxing.jpg"
+              width="496"
+              height="1074"
+              alt="Dhairya training in boxing gloves"
+              loading="lazy"
+            />
+          </figure>
+
+          <div class="boxing-copy">
+            <p class="boxing-copy__kicker">Away from the keyboard</p>
+            <h2>Boxing keeps me consistent.</h2>
+            <p class="boxing-copy__quote">
+              “Progress is repetition, attention, and showing up again.”
+            </p>
+            <p>
+              I’ve trained for more than a year. Boxing has taught me to stay
+              patient with difficult skills—the same mindset I bring to code.
+            </p>
+            <a
+              class="button button--light"
+              href="https://www.instagram.com/dhairya.bxng/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Follow my boxing journey
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section page-shell" id="contact" data-section data-reveal>
+        <p class="contact-section__prompt">Have an idea, a tip, or just want to say hello?</p>
+        <h2>Let’s talk about what you’re building.</h2>
+        <div class="contact-actions">
+          <a class="button button--primary" href="mailto:dhairyarsaluja@gmail.com">Email me</a>
+          <a
+            class="button button--outline"
+            href="https://github.com/dhairyasalujaa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View GitHub
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-shell site-footer__inner">
+        <p>Dhairya Saluja <span>Student developer in Muscat</span></p>
+        <p>Built by hand · <span data-year>2026</span></p>
+      </div>
+    </footer>
+  </body>
+</html>
