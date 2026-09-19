@@ -61,8 +61,12 @@ const implementedIds = [
   "26-editorial-social-proof",
   "27-editorial-contact-cta",
   "28-editorial-footer",
+  "29-studio-pricing",
   "30-editorial-pricing",
   "31-product-faq",
+  "32-brutal-faq",
+  "33-studio-team",
+  "34-brutal-stats",
   "36-editorial-contact-form",
   "35-product-newsletter",
 ];
@@ -178,5 +182,11 @@ assert.ok(editorialNav.classes.has("is-open"));
 setEditorialMenu(false, { toggle: editorialToggle, nav: editorialNav });
 assert.equal(editorialNav.attributes.get("aria-hidden"), "true");
 assert.ok(!editorialNav.classes.has("is-open"));
+
+const blockFolders = fs.readdirSync(path.join(root, "blocks"), { withFileTypes: true })
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => entry.name)
+  .sort();
+assert.deepEqual(blockFolders, BLOCKS.map((block) => block.id).sort(), "Block folders must match metadata exactly");
 
 console.log(`PASS: catalogue behavior and ${implementedIds.length} block contracts`);
