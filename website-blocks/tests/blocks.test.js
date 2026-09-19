@@ -189,4 +189,15 @@ const blockFolders = fs.readdirSync(path.join(root, "blocks"), { withFileTypes: 
   .sort();
 assert.deepEqual(blockFolders, BLOCKS.map((block) => block.id).sort(), "Block folders must match metadata exactly");
 
+for (const style of ["studio", "brutal", "product", "editorial"]) {
+  const demoPath = path.join(root, "demos", `${style}.html`);
+  assert.ok(fs.existsSync(demoPath), `Missing ${style} demo`);
+  const demo = fs.readFileSync(demoPath, "utf8");
+  assert.ok(demo.includes(`data-demo-style="${style}"`));
+  assert.equal((demo.match(/data-demo-section=/g) || []).length, 7, `${style} demo must contain 7 sections`);
+  assert.match(demo, /name="viewport"/);
+}
+assert.ok(fs.existsSync(path.join(root, "demos", "demo.css")), "Missing shared demo CSS");
+assert.ok(fs.existsSync(path.join(root, "demos", "demo.js")), "Missing shared demo JavaScript");
+
 console.log(`PASS: catalogue behavior and ${implementedIds.length} block contracts`);
