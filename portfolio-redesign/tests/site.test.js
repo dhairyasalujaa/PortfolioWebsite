@@ -65,4 +65,16 @@ assert.match(home, /dhairyarsaluja@gmail\.com/, "Home page is missing the email 
 assert.match(home, /github\.com\/dhairyasalujaa/, "Home page is missing GitHub");
 assert.match(home, /instagram\.com\/dhairya\.bxng/, "Home page is missing boxing Instagram");
 
-console.log("PASS: isolated files and semantic page contracts are present");
+const css = read("style.css");
+
+for (const token of ["--paper", "--ink", "--cobalt", "--burgundy", "--steel"]) {
+  assert.ok(css.includes(token), `Stylesheet is missing ${token}`);
+}
+
+assert.match(css, /@font-face/, "Stylesheet needs local font faces");
+assert.match(css, /:focus-visible/, "Stylesheet needs a visible keyboard focus state");
+assert.match(css, /@media\s*\(max-width:\s*760px\)/, "Stylesheet needs the mobile breakpoint");
+assert.match(css, /prefers-reduced-motion:\s*reduce/, "Stylesheet needs reduced-motion support");
+assert.match(css, /repeat\(12,\s*minmax\(0,\s*1fr\)\)/, "Desktop layout needs a 12-column grid");
+
+console.log("PASS: isolated files, page contracts, and responsive style contracts are present");
