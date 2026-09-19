@@ -26,15 +26,29 @@ website-blocks/
       index.html
       style.css
       script.js          # only when interaction is required
+      README.md
     ...
     36-editorial-contact-form/
       index.html
       style.css
+      README.md
+  demos/
+    studio.html
+    brutal.html
+    product.html
+    editorial.html
 ```
 
 Every block folder is self-contained. Copying that folder into another static
 site is enough to run it. Blocks will not import a shared stylesheet, package,
 font, image, icon library, or remote script.
+
+Every block also includes a concise `README.md`. It explains what the block is
+for, which files to copy, the first content and theme values to edit, whether
+JavaScript is required, how to add or remove repeated items, and any important
+accessibility behavior. The instructions must be usable by someone with basic
+HTML and CSS knowledge and must never assume a package manager or terminal
+workflow.
 
 ## Research direction
 
@@ -153,19 +167,59 @@ changing the surrounding layout.
 
 ## Catalogue
 
-`website-blocks/index.html` will provide a fast visual directory rather than a
-code editor. It will contain:
+`website-blocks/index.html` will be a polished visual product rather than a
+plain file index or code editor. Its design direction is a crisp, dark-neutral
+workspace with bright color used only to identify the four style families. It
+will use strong typography, deliberate spacing, compact filtering controls,
+and preview compositions that make the library enjoyable to browse without
+competing with the blocks themselves.
 
-- style filters for All, Studio, Brutal, Product, Editorial, and Specialty;
-- 36 preview cards containing the block name, purpose, style, and a direct
-  `Open preview` link;
+It will contain:
+
+- a focused opening statement and a clear `36 blocks` library count;
+- a sticky filter bar for All, Studio, Brutal, Product, Editorial, and
+  Specialty, plus text search by block name or purpose;
+- four style-family introductions with palette swatches and links to complete
+  assembled demo pages;
+- 36 deliberately composed preview cards containing a CSS-rendered miniature,
+  block name, purpose, style, required files, and a direct `Open preview` link;
 - a short explanation of how to copy and customize a block;
-- a count that updates when a style filter is selected;
+- a visible result count and friendly empty-search state;
+- keyboard-operable filters, clear active states, and mobile navigation;
 - no embedded iframes, syntax highlighter, package dependency, or copy-to-
   clipboard feature.
 
-The catalogue has its own neutral visual system so it does not favor one of the
-four block styles.
+The catalogue has its own visual system so it does not favor one block style.
+Its CSS miniature previews will represent each layout honestly without loading
+36 full pages at once. The catalogue will be browser-reviewed at the same
+desktop and mobile sizes as the components.
+
+## Quality bar
+
+The blocks must feel designed, not merely complete. Each one must have a clear
+visual idea, useful hierarchy, credible real-world sample copy, and a reason for
+every border, color, and interaction. Variants must differ in composition and
+behavior as well as palette; changing only colors does not count as a distinct
+style.
+
+Quality checks include:
+
+- avoid generic repeated-card layouts when another structure communicates the
+  content better;
+- keep body copy readable and avoid decorative labels that add no meaning;
+- use one memorable visual gesture per block and keep the remaining details
+  restrained;
+- verify hover, focus, active, empty, and expanded states wherever they apply;
+- ensure placeholder content is believable but clearly replaceable;
+- keep CSS selectors understandable and prevent specificity conflicts;
+- ensure each block looks intentional at desktop, tablet, and phone widths;
+- critique every block against the style definition before accepting it.
+
+The seven core blocks in each style pack will also be assembled into a complete
+demo page under `demos/`. These four pages prove that navigation, spacing,
+colors, heading scale, and section transitions work together as a real website.
+They are verification artifacts and examples, not additional blocks in the
+36-block count.
 
 ## Editing workflow
 
@@ -180,6 +234,14 @@ The README will teach the intended workflow:
 
 The guide will include one concrete customization example using the studio hero
 without introducing build tools.
+
+Each block-level README will use the same short structure:
+
+1. `Use it for` — the appropriate website and content type.
+2. `Files` — required HTML, CSS, and optional JavaScript.
+3. `Edit first` — exact comments, CSS variables, and repeated elements.
+4. `Behavior` — mobile or accordion interaction, when present.
+5. `Accessibility` — labels, heading level, alternative text, and focus notes.
 
 ## Responsive and accessibility requirements
 
@@ -198,7 +260,8 @@ without introducing build tools.
 Automated checks will verify:
 
 - exactly 36 numbered block directories exist;
-- every directory contains non-empty `index.html` and `style.css` files;
+- every directory contains non-empty `index.html`, `style.css`, and `README.md`
+  files;
 - every HTML file has a viewport meta tag, an appropriate semantic root
   landmark, a root block class, an `EDIT` marker, and no parent-folder or remote
   runtime dependency;
@@ -206,12 +269,16 @@ Automated checks will verify:
   and selectors scoped to its block root;
 - optional JavaScript files pass `node --check`;
 - all 36 catalogue links resolve to successful HTTP responses;
-- catalogue filters update the visible result count.
+- catalogue filters and search update the visible result count and empty state;
+- all four assembled demo pages resolve successfully and contain exactly seven
+  core sections from their corresponding style pack.
 
-Browser verification will cover the full catalogue plus representative blocks
-from each style at 1440 × 1000, 390 × 844, and 320 × 800. Interactive menus,
-the FAQ, keyboard focus order, reduced motion, console output, missing assets,
-and overflow will be checked directly.
+Browser verification will cover the full catalogue, all four assembled demo
+pages, and every block at either desktop or mobile size. Representative blocks
+from each style will be checked at all three target sizes: 1440 × 1000,
+390 × 844, and 320 × 800. Interactive menus, the FAQ, keyboard focus order,
+reduced motion, console output, missing assets, section compatibility, and
+overflow will be checked directly.
 
 ## Out of scope
 
