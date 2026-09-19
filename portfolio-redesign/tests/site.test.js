@@ -77,4 +77,46 @@ assert.match(css, /@media\s*\(max-width:\s*760px\)/, "Stylesheet needs the mobil
 assert.match(css, /prefers-reduced-motion:\s*reduce/, "Stylesheet needs reduced-motion support");
 assert.match(css, /repeat\(12,\s*minmax\(0,\s*1fr\)\)/, "Desktop layout needs a 12-column grid");
 
-console.log("PASS: isolated files, page contracts, and responsive style contracts are present");
+const interactions = require(path.join(root, "scripts.js"));
+assert.equal(typeof interactions.setMenu, "function", "scripts.js must export setMenu for testing");
+assert.equal(
+  typeof interactions.setCurrentYear,
+  "function",
+  "scripts.js must export setCurrentYear for testing",
+);
+
+function makeElement() {
+  const attributes = new Map();
+  const classes = new Set();
+  return {
+    attributes,
+    classes,
+    classList: {
+      toggle(name, force) {
+        if (force) classes.add(name);
+        else classes.delete(name);
+      },
+    },
+    setAttribute(name, value) {
+      attributes.set(name, String(value));
+    },
+  };
+}
+
+const toggle = makeElement();
+const nav = makeElement();
+interactions.setMenu(true, { toggle, nav });
+assert.equal(toggle.attributes.get("aria-expanded"), "true");
+assert.equal(nav.attributes.get("aria-hidden"), "false");
+assert.ok(nav.classes.has("is-open"), "Open navigation needs .is-open");
+
+interactions.setMenu(false, { toggle, nav });
+assert.equal(toggle.attributes.get("aria-expanded"), "false");
+assert.equal(nav.attributes.get("aria-hidden"), "true");
+assert.ok(!nav.classes.has("is-open"), "Closed navigation must remove .is-open");
+
+const yearNode = { textContent: "" };
+interactions.setCurrentYear([yearNode], 2030);
+assert.equal(yearNode.textContent, "2030");
+
+console.log("PASS: structure, responsive styles, and menu behavior are verified");
