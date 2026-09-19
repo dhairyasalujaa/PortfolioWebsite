@@ -54,7 +54,16 @@ const implementedIds = [
   "19-product-social-proof",
   "20-product-contact-cta",
   "21-product-footer",
+  "22-editorial-navigation",
+  "23-editorial-hero",
+  "24-editorial-projects",
+  "25-editorial-features",
+  "26-editorial-social-proof",
+  "27-editorial-contact-cta",
+  "28-editorial-footer",
+  "30-editorial-pricing",
   "31-product-faq",
+  "36-editorial-contact-form",
   "35-product-newsletter",
 ];
 
@@ -156,5 +165,18 @@ setFaqItem(faqButton, faqPanel, true);
 assert.equal(faqButton.attributes.get("aria-expanded"), "true");
 assert.equal(faqPanel.hidden, false);
 assert.ok(faqButton.classes.has("is-open"));
+
+const editorialMenuPath = path.join(root, "blocks", "22-editorial-navigation", "script.js");
+assert.ok(fs.existsSync(editorialMenuPath), "Editorial navigation is missing script.js");
+const { setEditorialMenu } = require(editorialMenuPath);
+const editorialToggle = fakeElement();
+const editorialNav = fakeElement();
+setEditorialMenu(true, { toggle: editorialToggle, nav: editorialNav });
+assert.equal(editorialToggle.attributes.get("aria-expanded"), "true");
+assert.equal(editorialNav.attributes.get("aria-hidden"), "false");
+assert.ok(editorialNav.classes.has("is-open"));
+setEditorialMenu(false, { toggle: editorialToggle, nav: editorialNav });
+assert.equal(editorialNav.attributes.get("aria-hidden"), "true");
+assert.ok(!editorialNav.classes.has("is-open"));
 
 console.log(`PASS: catalogue behavior and ${implementedIds.length} block contracts`);
