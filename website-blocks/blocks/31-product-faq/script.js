@@ -1,3 +1,0 @@
-function setFaqItem(button,panel,open){button.setAttribute("aria-expanded",String(open));button.classList.toggle("is-open",open);panel.hidden=!open}
-if(typeof document!=="undefined"){const root=document.querySelector(".product-faq");if(root){const buttons=[...root.querySelectorAll("button[aria-controls]")];buttons.forEach((button,index)=>{const panel=document.getElementById(button.getAttribute("aria-controls"));setFaqItem(button,panel,index===0);button.addEventListener("click",()=>{const willOpen=button.getAttribute("aria-expanded")!=="true";buttons.forEach(other=>setFaqItem(other,document.getElementById(other.getAttribute("aria-controls")),other===button&&willOpen))})})}}
-if(typeof module!=="undefined")module.exports={setFaqItem};
