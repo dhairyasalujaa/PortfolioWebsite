@@ -1,53 +1,75 @@
-let projects = [
-  "Weyn",
-  "Portfolio",
-  "Weather App",
-  "This website",
-  "Small Websites",
-];
-
-const lenis = new Lenis({ anchors: true });
+// lenis
+const lenis = new Lenis({
+  duration: 1,
+  easing: (value) => Math.min(1, 1.001 - 2 ** (-10 * value)),
+  orientation: "vertical",
+  gestureOrientation: "vertical",
+  smoothWheel: true,
+});
 
 function raf(time) {
   lenis.raf(time);
-  requestAnimationFrame(raf);
+  window.requestAnimationFrame(raf);
 }
 
-requestAnimationFrame(raf);
+window.requestAnimationFrame(raf);
 
-for (let i = 0; i < projects.length; i++) {
-  console.log(projects[i]);
+lenis.on("scroll", () => {
+  const scrollIndicator = document.querySelector(".scroll-indicator");
+
+  if (!scrollIndicator) {
+    return;
+  }
+
+  scrollIndicator.style.transform = `translateX(${(lenis.scroll / lenis.scrollDistance) * 100}%)`;
+});
+
+// highlight the nav link for the section currently in view
+const navLinks = document.querySelectorAll(".site-header nav a");
+const sections = document.querySelectorAll("main > section");
+
+function highlightSection(sectionId) {
+  navLinks.forEach(function (link) {
+    if (link.hash === "#" + sectionId) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
 }
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
+const sectionObserver = new IntersectionObserver(
+  function (entries) {
+    entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
+        highlightSection(entry.target.id);
       }
     });
   },
-  { threshold: 0.15 },
+  // watch the area below the header, rather than the whole screen
+  { rootMargin: "-15% 0px -45% 0px", threshold: 0 },
 );
 
-document
-  .querySelectorAll(".reveal, .reveal-group")
-  .forEach((el) => observer.observe(el));
+sections.forEach(function (section) {
+  sectionObserver.observe(section);
+});
 
-/* ===== NAV BACKGROUND =====
+// copy email, with a message if the browser blocks it
+const copyButton = document.getElementById("copy-email");
+const copyStatus = document.getElementById("copy-status");
 
-  The nav sits over the hero photo with no background of its own, and gains
-  one once you have scrolled past the top. 40px is far enough down that a
-  phone address bar settling on load does not flip it on its own. */
-
-const nav = document.getElementById("nav");
-const SOLID_AFTER = 40;
-
-function syncNav() {
-  nav.classList.toggle("scrolled", window.scrollY > SOLID_AFTER);
+async function copyEmail() {
+  try {
+    await navigator.clipboard.writeText("dhairyarsaluja@gmail.com");
+    copyStatus.textContent = "Email copied.";
+  } catch (error) {
+    copyStatus.textContent =
+      "Select the email address to copy it, or click it to open your mail app.";
+  }
 }
 
-window.addEventListener("scroll", syncNav, { passive: true });
+copyButton.addEventListener("click", copyEmail);
 
-// Run once on load, since a reload can restore a scrolled position.
-syncNav();
+// no need to change the footer every January
+const year = document.getElementById("year");
+year.textContent = new Date().getFullYear();

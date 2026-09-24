@@ -2,198 +2,189 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f2f2f2" />
+    <meta
+      name="description"
+      content="Dhairya Saluja. Aspiring developer and boxer in Muscat, Oman. Projects, experiments, and life outside the editor." />
     <title>Dhairya Saluja</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%232848d8'/%3E%3Ctext x='9' y='44' font-size='34' font-family='Arial' font-weight='bold' fill='white'%3EDS%3C/text%3E%3C/svg%3E" />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/barlow-condensed-extra-bold.ttf"
+      type="font/ttf"
+      crossorigin />
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
     <link rel="stylesheet" href="style.css" />
+    <script src="scripts.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.x/dist/lenis.min.js"></script>
   </head>
+
   <body>
-    <header class="nav" id="nav">
-      <div class="nav-inner">
-        <a class="nav-logo" href="#top">DS</a>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-        <nav class="nav-links" aria-label="Sections">
-          <a href="#boxing">boxing</a>
-          <a href="#skills">stack</a>
-          <a href="#projects">projects</a>
-        </nav>
+    <!-- nav-->
 
-        <a class="nav-contact" href="#contact-info">contact</a>
-      </div>
+    <header class="site-header">
+      <a class="logo" href="#top">DS6</a>
+
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#boxing">Boxing</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <!-- hero -->
+    <main id="main">
+      <!-- hero -->
 
-    <div class="hero" id="top">
-      <img
-        class="hero-photo"
-        src="images/mirror.jpg"
-        alt="Elevator mirror picture of me"
-        width="1080"
-        height="1920"
-        fetchpriority="high"
-      />
-      <div class="hero-veil" aria-hidden="true"></div>
+      <section class="hero" id="top">
+        <div class="hero-intro"></div>
+        <div class="hero-stage">
+          <h1 id="hero-title">
+            <span>DHAIRYA</span>
+            <span>
+              SALUJA
+              <span class="name-period">.</span>
+            </span>
+          </h1>
+          <figure class="hero-portrait">
+            <img
+              src="assets/portrait.jpg"
+              alt="Dhairya Saluja taking a mirror portrait"
+              width="700"
+              height="900"
+              fetchpriority="high" />
+          </figure>
+        </div>
+      </section>
+      <!-- projects -->
+      <section class="work-section section-shell" id="work">
+        <div class="section-title">
+          <h2 id="work-title">MY WORK</h2>
+        </div>
 
-      <div class="header">
-        <h1>
-          Dhairya <br />
-          Saluja
-        </h1>
-        <p>
-          My name is Dhairya, I'm 14 years old, and I live in Muscat, Oman. I'm
-          learning how to code, and I box at an intermediate level. This website
-          is mainly my portfolio and my practice website. I'm going to show of
-          all my hobbies here aswell. Thanks!
-        </p>
-      </div>
-    </div>
-
-    <!-- skills -->
-
-    <section class="skills reveal-group" id="skills">
-      <h2 class="reveal">Stack I use</h2>
-      <p class="skills-sub reveal">
-        Technologies I'm learning and building with.
-      </p>
-
-      <div class="skill-grid reveal">
-        <div class="skill">
-          <img src="images/html.svg" alt="HTML" />
-          <span>HTML</span>
+        <div class="work-grid"></div>
+      </section>
+      <!-- about me -->
+      <section class="about-section section-shell" id="about">
+        <div class="about-heading">
+          <h2 id="about-title">
+            A LITTLE
+            <br />
+            ABOUT ME
+          </h2>
         </div>
-        <div class="skill">
-          <img src="images/css.svg" alt="CSS" />
-          <span>CSS</span>
-        </div>
-        <div class="skill">
-          <img src="images/tailwindcss.svg" alt="Tailwind CSS" />
-          <span>Tailwind CSS</span>
-        </div>
-        <div class="skill">
-          <img src="images/javascript.svg" alt="JavaScript" />
-          <span>JavaScript</span>
-        </div>
-        <div class="skill">
-          <img src="images/git.svg" alt="Git" />
-          <span>Git</span>
-        </div>
-        <div class="skill">
-          <img src="images/vercel.svg" alt="Vercel" />
-          <span>Vercel</span>
-        </div>
-        <div class="skill">
-          <img src="images/figma.svg" alt="Figma" />
-          <span>Figma</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- projects -->
-    <section id="projects" class="projects-section reveal-group">
-      <h2 class="reveal">Projects</h2>
-      <p class="projects-sub reveal">Things I've built and am working on.</p>
-
-      <div class="project-list reveal">
-        <div class="project-card">
-          <h3>Weyn</h3>
+        <div class="about-copy">
+          <p class="about-lead">Hey, I’m Dhairya.</p>
           <p>
-            An event discovery and ticketing app for Muscat. This project is on
-            hold for now, I hope to continue it in the future!
+            I live in Muscat, Oman. I'm an aspiring developer since june 2026, I
+            want to become a frontend developer for a FAANG company, and maybe
+            launch my own startup
           </p>
+          <div class="toolkit">
+            <h3>My current skills</h3>
+            <ul>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>Tailwind CSS</li>
+              <li>Git</li>
+              <li>Vercel</li>
+              <li>Figma</li>
+            </ul>
+          </div>
         </div>
+      </section>
 
-        <div class="project-card">
-          <h3>This Website</h3>
-          <p>
-            My portfolio, built from scratch while learning HTML, CSS and
-            JavaScript. You're looking at it right now!
-          </p>
-        </div>
+      <!-- boxing: photo on the left, my story on the right -->
+      <section class="boxing-section section-shell" id="boxing">
+        <div class="boxing-layout">
+          <figure class="boxing-photo">
+            <img
+              src="assets/boxing.jpg"
+              alt="Dhairya practising punches during a boxing session"
+              width="496"
+              height="1080"
+              loading="lazy" />
+          </figure>
 
-        <div class="project-card">
-          <h3>TodoList App</h3>
-          <p>A really basic todolist app I made while learning javascript.*</p>
-        </div>
-      </div>
-    </section>
+          <div class="boxing-copy">
+            <h2 id="boxing-title">BOXING.</h2>
+            <p class="boxing-lead">
+              I love boxing for the peace it brings me, and how it pushes me to
+              my limits
+            </p>
 
-    <!-- boxing -->
-    <section class="boxing-info reveal-group" id="boxing">
-      <h2 class="reveal">Boxing</h2>
-      <div class="boxing-text reveal">
-        <p>
-          I absolutely love boxing and I've been training my hardest for a
-          little over a year now. I love it because of the repetition and the
-          feeling of being that tired in a sport that I feel I'm naturally
-          inclined towards.
-        </p>
-        <p>
-          Lately my training sessions have been directed towards working and
-          improving myself. My end goal is to fight at Fitbox Fighting
-          Championship 7 around November.
-        </p>
-      </div>
-      <a
-        class="reveal link"
-        href="https://www.instagram.com/dhairya.bxng/"
-        target="_blank"
-        >Support my boxing journey as well!</a
-      >
-    </section>
+            <div class="boxing-goal">
+              <h3>MY CURRENT GOAL</h3>
+              <p>
+                I'm giving it my all in training, aiming to fight in one of my
+                country's biggest events very soon!
+              </p>
+            </div>
 
-    <!-- contact -->
-    <section id="contact-info" class="reveal-group">
-      <div class="contact-info reveal">
-        <h2>Contact</h2>
-        <ul>
-          <li>dhairyarsaluja@gmail.com</li>
-          <li>
-            Github:
             <a
-              class="link"
+              class="boxing-link"
+              href="https://www.instagram.com/dhairya.bxng/"
+              target="_blank"
+              rel="noopener noreferrer">
+              Follow my training
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- contact: email and socials -->
+      <section class="contact-section section-shell" id="contact">
+        <a class="contact-headline" href="mailto:dhairyarsaluja@gmail.com">
+          <h2 id="contact-title">LET’S TALK.</h2>
+        </a>
+        <div class="contact-details">
+          <a class="email" href="mailto:dhairyarsaluja@gmail.com">
+            dhairyarsaluja@gmail.com
+          </a>
+          <button id="copy-email">
+            Copy email
+            <span>⧉</span>
+          </button>
+          <p id="copy-status" role="status"></p>
+          <div class="socials">
+            <a
               href="https://github.com/dhairyasalujaa"
               target="_blank"
-              >dhairyasalujaa</a
-            >
-          </li>
-        </ul>
-      </div>
-    </section>
+              rel="noopener noreferrer">
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/2111/2111432.png"
+                alt="GitHub logo"
+                width="24"
+                height="24" />
+            </a>
+            <a
+              href="https://instagram.com/dhairyasaluja6/"
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/3661/3661391.png"
+                alt="Instagram logo"
+                width="24"
+                height="24" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    <!-- footer -->
-    <footer class="site-footer">
-      <div class="footer-columns">
-        <p class="footer-tagline">Aspiring developer from Muscat, Oman.</p>
-
-        <nav class="footer-col" aria-label="Index">
-          <p class="footer-heading">Index</p>
-          <a href="#boxing">Boxing</a>
-          <a href="#skills">Stack</a>
-          <a href="#projects">Projects</a>
-        </nav>
-
-        <nav class="footer-col" aria-label="Socials">
-          <p class="footer-heading">Elsewhere</p>
-          <a href="https://github.com/dhairyasalujaa" target="_blank">GitHub</a>
-          <a href="https://www.instagram.com/dhairyasaluja6/" target="_blank"
-            >Instagram</a
-          >
-        </nav>
-      </div>
-
-      <p class="footer-legal">&copy; 2026 Dhairya Saluja</p>
-
-      <a class="footer-wordmark" href="#top">DHAIRYA</a>
+    <footer class="section-shell">
+      <span>
+        ©
+        <span id="year">2026</span>
+        Dhairya Saluja
+      </span>
+      <a href="#top">Back to top</a>
     </footer>
-
-    <script src="https://unpkg.com/lenis@1.3.8/dist/lenis.min.js"></script>
-    <script src="scripts.js"></script>
   </body>
 </html>
