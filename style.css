@@ -115,13 +115,12 @@ button {
   border-radius: 5px;
   font-size: 14px;
   font-weight: 700;
-  transition:
-    background 0.2s,
-    color 0.2s;
+  transition: all 0.2s ease-in-out;
 }
 
 .site-header nav a:hover,
 .site-header nav a.active {
+  border-radius: 50px;
   background: var(--ink);
   color: var(--paper);
 }
