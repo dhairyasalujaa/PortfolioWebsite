@@ -115,12 +115,13 @@ button {
   border-radius: 5px;
   font-size: 14px;
   font-weight: 700;
-  transition: all 0.2s ease-in-out;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .site-header nav a:hover,
 .site-header nav a.active {
-  border-radius: 50px;
   background: var(--ink);
   color: var(--paper);
 }
@@ -359,14 +360,14 @@ button {
 }
 .toolkit li {
   padding: 9px 12px;
-  border: 1px solid #b3b3b3;
+  border: 1px solid #b3b3b38a;
   border-radius: 4px;
   font-size: 11px;
   transition: all 0.1s ease-in-out;
 }
 .toolkit li:hover {
   transform: scale(1.1);
-  box-shadow: 1px 0px 2px rgba(0, 0, 0, 0.192);
+  box-shadow: 1px 2px 2px #2848d8;
   overflow: hidden;
 }
 
@@ -697,7 +698,7 @@ footer {
   }
 }
 
-/* phones: stack the content and keep the nav visible */
+/* phones*/
 
 @media (max-width: 700px) {
   html {
